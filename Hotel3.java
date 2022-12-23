@@ -18,7 +18,8 @@ public static void main(String[] args) {
 
     Kunde [] Kunden = new Kunde [100];
     Zimmer [] Belegung = new Zimmer [8];
-    Buchung [] Buchungen = new Buchung [8];
+    Buchung [] Buchungen = new Buchung [100];
+    Buchung [][] Rechnungen = new Buchung [2][8];
     //
     //Kundendaten erzeugen
     //
@@ -73,6 +74,7 @@ public static void main(String[] args) {
     //
     //Deklaration der notwendigen Attribute
     //
+    byte b = 0;
     int auswahl;
     int preiskategorie;
     boolean balkon;
@@ -93,11 +95,11 @@ public static void main(String[] args) {
     //Start der Abfrage
     //
     print("Was möchten Sie aufrufen?");
-    print("Buchung ausführen: 1, Belegung eines Zimmers anzeigen: 2, Alle Zimmer anzeigen: 3, Buchung eines Zimmers anzeigen: 4, ");
+    print("Buchung ausführen: 1, Belegung eines Zimmers anzeigen: 2, Alle Zimmer anzeigen: 3, Buchung eines Zimmers anzeigen: 4, Kunde Anlegen: 5, ");
     auswahl = s.nextInt();
     switch(auswahl){
         case 1:
-            for(int b = 0; b<3; b++){
+            do{
                 preiskategorie = abfrageZimmerart();
                 switch(preiskategorie){
                     case 1:
@@ -141,6 +143,7 @@ public static void main(String[] args) {
                         fruehstueck = abfrageFruehstueck();
                         anzahlPersonen = 2;
                         anzahlTage = abfrageAnzahlTage();
+                        break;
                     case 3:
                         zimmernummer = getBelegungTripplezimmer(Belegung);
                         if(zimmernummer == 0){
@@ -173,6 +176,11 @@ public static void main(String[] args) {
                     break;
                 }else Buchungen[zimmernummer-1] = new Buchung(zimmernummer, preiskategorie);
                 
+                print("Moechten Sie weitere Zimmer buchen?");
+                if(abfrageEinverstanden()){
+                    b++;
+                }else b = 4;
+            }while(b<4);
                 
                 
                 name = abfrageName();
@@ -186,9 +194,6 @@ public static void main(String[] args) {
                     premiumkunde = abfragePremiumkunde();
                     Kunden[k] = new Kunde(name, anschrift, geburtsdatum, premiumkunde); k++;
                 }//end if else(kundennummer)
-                
-                
-            }//end for schleife b<3 der buchung 
             break;
         case 2:
             zimmerBelegungAnzeigen(Belegung);
@@ -233,7 +238,13 @@ public static int abfrageZimmerart(){
 }
 public static boolean abfrageBalkon(){
     print("Möchten Sie ein Zimmer mit Balkon buchen? true, false.");
-    boolean balkon = s.nextBoolean();
+    boolean balkon = false;
+    String input = s.next();
+    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+        balkon = true;
+    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+        balkon = false;
+    }
     return balkon;
 }
 
@@ -316,7 +327,13 @@ public static int getBelegungWohnung(Zimmer[]Belegung){
 
 public static boolean abfrageFruehstueck(){
     print("Moechten Sie Fruehstueck buchen?");
-    boolean fruehstueck = s.nextBoolean();
+    boolean fruehstueck = false;
+    String input = s.next();
+    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+        fruehstueck = true;
+    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+        fruehstueck = false;
+    }
     return fruehstueck;
 }
 
@@ -327,7 +344,7 @@ public static int abfrageAnzahlPersonen(){
     return anzahlPersonen;
 }
 public static int abfrageAnzahlTage(){
-    print("Wie viele Tage möchten Sie bleiben?");
+    print("Wie viele Tage moechten Sie bleiben?");
     int anzahlTage = s.nextInt();
     return anzahlTage;
 }
@@ -335,12 +352,24 @@ public static int abfrageAnzahlTage(){
 
 public static boolean abfrageHaustier(){
     print("Moechten Sie mit Haustier anreisen?");
-    boolean haustier = s.nextBoolean();
+    boolean haustier = false;
+    String input = s.next();
+    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+        haustier = true;
+    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+        haustier = false;
+    }
     return haustier;
 }
 public static boolean abfrageZimmerservice(){
     print("Moechten Sie zimmerservice buchen?");
-    boolean zimmerservice = s.nextBoolean();
+    boolean zimmerservice = false;
+    String input = s.next();
+    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+        zimmerservice = true;
+    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+        zimmerservice = false;
+    }
     return zimmerservice;
 }
 
@@ -370,19 +399,31 @@ public static String abfrageGeburtsdatum(){
 }
 public static boolean abfragePremiumkunde(){
     print("Möchten Sie Premiumkunde werden?");
-    boolean premiumkunde = s.nextBoolean();
+    boolean premiumkunde = false;
+    String input = s.next();
+    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+        premiumkunde = true;
+    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+        premiumkunde = false;
+    }
     return premiumkunde;
 }
     
 
 public static boolean abfrageEinverstanden(){
     print("Sind Sie damit einverstanden?");
-    boolean einverstanden = s.nextBoolean();
+    boolean einverstanden = false;
+    String input = s.next();
+    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+        einverstanden = true;
+    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+        einverstanden = false;
+    }
     return einverstanden;
 }
 public static void zimmerBelegungAnzeigen(Zimmer[]Belegung){
     print("Welches Zimmer moechten Sie aufrufen? 1, 2, 3...");
-            Belegung[s.nextInt()].printBelegt();
+            Belegung[s.nextInt()-1].printBelegt();
 }
 public static void zimmerAnzeigen(Zimmer[]Belegung){
     for(int i = 0; i<Belegung.length; i++){
@@ -390,11 +431,11 @@ public static void zimmerAnzeigen(Zimmer[]Belegung){
     }
 }
 public static void zimmerBelegungProzent(Zimmer[]Belegung){
-    int anzahlBelegt = 0;
+    double anzahlBelegt = 0;
     for(int i = 0; i<Belegung.length; i++){
         if(Belegung[i].getBelegt()){anzahlBelegt++;}
     }
-    System.out.println("Das Hotel ist zu " + (anzahlBelegt/Belegung.length) + "% belegt.");
+    System.out.println("Das Hotel ist zu " + ((anzahlBelegt/Belegung.length)*100) + "% belegt.");
 }
 public static void zimmerBuchungAnzeigen(Buchung[]Buchungen){
     print("Welches Zimmer moechten Sie aufrufen? 1, 2, 3...");
