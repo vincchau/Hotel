@@ -4,6 +4,8 @@
  */
 package hotel3;
 
+import java.util.prefs.PreferenceChangeListener;
+
 /**
  *
  * @author Vincent
@@ -97,4 +99,11 @@ public class Zimmer extends Hotel3{
             System.out.println("Zimmer belegt.");
         }else System.out.println("Zimmer frei.");
     }
+
+    public double rechner(){
+        double ergebnis = 0.d;
+        ergebnis = getPreisProZimmer();
+        return ergebnis;
+    }
+
 }//end class

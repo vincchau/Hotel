@@ -22,5 +22,4 @@ public class Tripplezimmer extends Zimmer{
         super.print();
         System.out.println("");
     }
-    
 }

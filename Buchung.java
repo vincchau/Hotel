@@ -41,6 +41,14 @@ public class Buchung extends Hotel3{
         this(zimmernummer);
         this.preiskategorie = preiskategorie;
     }
+    public Buchung(String name,String anschrift,String geburtsdatum, boolean premiumkunde, int zimmernummer,
+                   int preiskategorie, boolean balkon, boolean einzelzimmerzuschlag, int anzahlPersonen, int anzahlTage){
+        this.preiskategorie=preiskategorie;
+        this.balkon=balkon;
+        this.einzelzimmerzuschlag=einzelzimmerzuschlag;
+        this.anzahlPersonen = anzahlPersonen;
+        this.anzahlTage = anzahlTage;
+    }
     public Buchung(int zimmernummer, int preiskategorie, boolean balkon){
         this(zimmernummer, preiskategorie);
         this.balkon = balkon;
@@ -54,21 +62,22 @@ public class Buchung extends Hotel3{
         this(zimmernummer, preiskategorie, balkon);
         this.einzelzimmerzuschlag = einzelzimmerzuschlag;
     }
-    public Buchung(int zimmernummer, int preiskategorie, boolean balkon, boolean einzelzimmerzuschlag, int anzahlPersonen, int anzahlTage){
-        this(zimmernummer, preiskategorie, balkon, einzelzimmerzuschlag);
-        this.anzahlPersonen = anzahlPersonen;
-        this.anzahlTage = anzahlTage;
-    }
+   // public Buchung(int zimmernummer, int preiskategorie, boolean balkon, boolean einzelzimmerzuschlag, int anzahlPersonen, int anzahlTage){
+     //   this(zimmernummer, preiskategorie, balkon, einzelzimmerzuschlag);
+       // this.anzahlPersonen = anzahlPersonen;
+        //this.anzahlTage = anzahlTage;
+    //}
     public Buchung(int zimmernummer, int preiskategorie, int anzahlPersonen, int anzahlTage){
         this(zimmernummer, preiskategorie);
         this.anzahlPersonen = anzahlPersonen;
         this.anzahlTage = anzahlTage;
     }
-    public Buchung(boolean fruehstueck){
-        this.fruehstueck = fruehstueck;
+    public Buchung(int zimmernummer, int preiskategorie, int anzahlPersonen, int anzahlTage, boolean haustier, boolean zimmerservice){
+        this(zimmernummer, preiskategorie, anzahlTage, anzahlPersonen);
+        this.haustier = haustier;
+        this.zimmerservice = zimmerservice;
     }
-    public Buchung(int zimmernummer, boolean fruehstueck){
-        this(zimmernummer);
+    public Buchung(boolean fruehstueck){
         this.fruehstueck = fruehstueck;
     }
     //
@@ -264,6 +273,32 @@ public class Buchung extends Hotel3{
         System.out.println("----------");
     }
     public void printSumme(){
+        switch(preiskategorie) {
+            case 1:
+                summe = anzahlTage *= 50.00;
+                if (balkon) summe += 10.00;
+                if (fruehstueck) summe += 5.00;
+
+                break;
+            case 2:
+                summe = anzahlTage * 75.00;
+                if (balkon) summe += 10.00;
+                if (einzelzimmerzuschlag) summe += 25.00;
+                if (fruehstueck) summe += 5.00;
+                break;
+            case 3:
+                summe = anzahlTage * 100.00;
+                if (fruehstueck) summe += 5.00;
+                break;
+            case 4:
+                summe = anzahlTage * 150.00;
+                if (haustier) summe += 10.00;
+                if (zimmerservice) summe += 10;
+                break;
+        }
+                summe *= 1.19;
+                if(premiumkunde) summe *= 0.95;
+                System.out.println("MwSt.: " + (summe-(summe/1.19)));
         System.out.println("Summe: " + summe + "€");
         System.out.println("----------");
     }

@@ -43,5 +43,6 @@ public class Einzelzimmer extends Zimmer{
         System.out.println("Balkon? " + balkon);
         System.out.println("");
     }
-    
+
+
 }//end class

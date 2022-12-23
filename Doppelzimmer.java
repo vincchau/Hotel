@@ -45,4 +45,5 @@ public class Doppelzimmer extends Einzelzimmer{
         System.out.println("Einzelzimmerzuschlag? " + einzelzimmerzuschlag);
         System.out.println("");
     }
+
 }

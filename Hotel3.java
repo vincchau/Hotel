@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package hotel3;
+import java.util.Objects;
 import java.util.Scanner;
 /**
  *
@@ -12,14 +13,14 @@ public class Hotel3 {
 public static Scanner s = new Scanner(System.in);
 public static void print(String p){System.out.println(p);}
 
-public static int k = 0;
+public static int k = 1;
 
 public static void main(String[] args) {
 
     Kunde [] Kunden = new Kunde [100];
     Zimmer [] Belegung = new Zimmer [8];
-    Buchung [] Buchungen = new Buchung [100];
-    Buchung [][] Rechnungen = new Buchung [2][8];
+    Buchung [] Buchungen = new Buchung [8];
+    //Buchung [][] Rechnungen = new Buchung [2][8];
     //
     //Kundendaten erzeugen
     //
@@ -52,12 +53,15 @@ public static void main(String[] args) {
                 break;
             case 4:
                 Belegung[i] = new Tripplezimmer(5);
+                Belegung[i].setBelegt(false);
                 break;
             case 5:
                 Belegung[i] = new Tripplezimmer(6);
+                Belegung[i].setBelegt(false);
                 break;
             case 6:
                 Belegung[i] = new Wohnung(7);
+                Belegung[i].setBelegt(false);
                 break;
             case 7:
                 Belegung[i] = new Wohnung(8);
@@ -74,7 +78,7 @@ public static void main(String[] args) {
     //
     //Deklaration der notwendigen Attribute
     //
-    byte b = 0;
+
     int auswahl;
     int preiskategorie;
     boolean balkon;
@@ -87,18 +91,20 @@ public static void main(String[] args) {
     boolean zimmerservice = false;
     
     int kundennummer = 0;
-    String name;
-    String anschrift;
-    String geburtsdatum;
+    String name = null;
+    String anschrift = null;
+    String geburtsdatum = null;
     boolean premiumkunde = false;
     //
     //Start der Abfrage
     //
+
     print("Was möchten Sie aufrufen?");
     print("Buchung ausführen: 1, Belegung eines Zimmers anzeigen: 2, Alle Zimmer anzeigen: 3, Buchung eines Zimmers anzeigen: 4, Kunde Anlegen: 5, ");
     auswahl = s.nextInt();
     switch(auswahl){
         case 1:
+            int b = 1;
             do{
                 preiskategorie = abfrageZimmerart();
                 switch(preiskategorie){
@@ -124,6 +130,10 @@ public static void main(String[] args) {
                         fruehstueck = abfrageFruehstueck();
                         anzahlPersonen = 1;
                         anzahlTage = abfrageAnzahlTage();
+                        Buchungen[zimmernummer-1] = new Buchung(zimmernummer, preiskategorie, anzahlPersonen, anzahlTage);
+                        Buchungen[zimmernummer-1].setBalkon(balkon);
+                        Buchungen[zimmernummer-1].setFruehstueck(fruehstueck);
+                        Buchungen[zimmernummer-1].setEinzelzimmerzuschlag(einzelzimmerzuschlag);
                         break;
                     case 2:
                         balkon = abfrageBalkon();
@@ -143,6 +153,9 @@ public static void main(String[] args) {
                         fruehstueck = abfrageFruehstueck();
                         anzahlPersonen = 2;
                         anzahlTage = abfrageAnzahlTage();
+                        Buchungen[zimmernummer-1] = new Buchung(zimmernummer, preiskategorie, anzahlPersonen, anzahlTage);
+                        Buchungen[zimmernummer-1].setBalkon(balkon);
+                        Buchungen[zimmernummer-1].setFruehstueck(fruehstueck);
                         break;
                     case 3:
                         zimmernummer = getBelegungTripplezimmer(Belegung);
@@ -152,6 +165,8 @@ public static void main(String[] args) {
                         fruehstueck = abfrageFruehstueck();
                         anzahlPersonen = 3;
                         anzahlTage = abfrageAnzahlTage();
+                        Buchungen[zimmernummer-1] = new Buchung(zimmernummer, preiskategorie, anzahlPersonen, anzahlTage);
+                        Buchungen[zimmernummer-1].setFruehstueck(fruehstueck);
                         break;
                     case 4:
                         zimmernummer = getBelegungWohnung(Belegung);
@@ -170,30 +185,46 @@ public static void main(String[] args) {
                         }
                         haustier = abfrageHaustier();
                         zimmerservice = abfrageZimmerservice();
+
+                        if(zimmernummer == 0 | anzahlTage == 0 | anzahlPersonen == 0){
+                            break;
+                        }else Buchungen[zimmernummer-1] = new Buchung(zimmernummer, preiskategorie, anzahlPersonen, anzahlTage);
+                        Buchungen[zimmernummer-1].setHaustier(haustier);
+                        Buchungen[zimmernummer-1].setZimmerservice(zimmerservice);
                         break;
                 }//end switch(preiskategorie)
-                if(zimmernummer == 0 | anzahlTage == 0 | anzahlPersonen == 0){
+                if(zimmernummer == 0){
                     break;
-                }else Buchungen[zimmernummer-1] = new Buchung(zimmernummer, preiskategorie);
-                
-                print("Moechten Sie weitere Zimmer buchen?");
-                if(abfrageEinverstanden()){
+                }
+                if(name == null) {
+                    name = abfrageName();
+                    geburtsdatum = abfrageGeburtsdatum();
+                    kundennummer = abfrageKundennummer(name, geburtsdatum, Kunden);
+                    if (kundennummer == 0) {
+                        anschrift = abfrageAnschrift();
+                        premiumkunde = abfragePremiumkunde();
+                        Kunden[k] = new Kunde(name, anschrift, geburtsdatum, premiumkunde, zimmernummer);
+                        kundennummer  =k; k++;
+                    } else {
+                        anschrift = Kunden[kundennummer].getAnschrift();
+                        premiumkunde = Kunden[kundennummer].getPremiumkunde();
+                        Kunden[kundennummer].setZimmernummer1(zimmernummer);
+                    }//end if else(kundennummer)
+                } else if(b == 2){
+                    Kunden[kundennummer].setZimmernummer2(zimmernummer);
+                } else if (b == 3) {
+                    Kunden[kundennummer].setZimmernummer3(zimmernummer);
+                }
+                Buchungen[zimmernummer-1].setName(name); Buchungen[zimmernummer-1].setGeburtsdatum(geburtsdatum); Buchungen[zimmernummer-1].setAnschrift(anschrift); Buchungen[zimmernummer-1].setPremiumkunde(premiumkunde);
+                Belegung[zimmernummer-1].setBelegt(true);
+                if(b<3) print("Moechten Sie weitere Zimmer buchen?");
+                if(b<3) {
+                    if (!abfrageEinverstanden()) {
+                        b = 4;
+                    } }
                     b++;
-                }else b = 4;
+
             }while(b<4);
-                
-                
-                name = abfrageName();
-                geburtsdatum = abfrageGeburtsdatum();
-                kundennummer = abfrageKundennummer(name, geburtsdatum, Kunden);
-                if(kundennummer >= 0){
-                    anschrift = Kunden[kundennummer].getAnschrift();
-                    premiumkunde = Kunden[kundennummer].getPremiumkunde();
-                }else{
-                    anschrift = abfrageAnschrift();
-                    premiumkunde = abfragePremiumkunde();
-                    Kunden[k] = new Kunde(name, anschrift, geburtsdatum, premiumkunde); k++;
-                }//end if else(kundennummer)
             break;
         case 2:
             zimmerBelegungAnzeigen(Belegung);
@@ -205,32 +236,20 @@ public static void main(String[] args) {
             zimmerBelegungProzent(Belegung);
             break;
         case 5:
-            zimmerBuchungAnzeigen(Buchungen);
+            print("Für welches Zimmer moechten Sie die Rechnung drucken?");
+                Buchungen[s.nextInt()-1].printRechnung();
             break;
+      //  case 6:
+        //    print("Die Rechnungen für alle Zimmer");
+          //      for(int p=0; p<8;p++){
+            //        Buchungen[p].printSumme();
+              //  }
+            //break;
     }//end switch(auswahl)
     //
     }//end for schleife i des Systems
-    //
-    //
-//    int zimmernummer = getBelegungEinzelzimmer(Belegung);
-//        Buchungen[zimmernummer-1] = new Buchung(zimmernummer, 2, true, 1, 1);
-//        Buchungen[zimmernummer-1].setFruehstueck(true);
-//        //Belegung[zimmernummer-1].print();
-//        Buchungen[zimmernummer-1].printDoppelzimmer();
-//
-//    int zimmernummer2 = getBelegungWohnung(Belegung);
-//        Buchungen[zimmernummer2-1] = new Buchung(zimmernummer2, 4, 4, 4);
-//        //Belegung[zimmernummer2-1].print();
-//        Buchungen[zimmernummer2-1].printWohnung();
-//
-//    int zimmernummer3 = getBelegungTripplezimmer(Belegung);
-//        Buchungen[zimmernummer3-1] = new Buchung(zimmernummer3, true);
-//        //Belegung[zimmernummer3-1].print();
-//        Buchungen[zimmernummer3-1].printTripplezimmer();
-//        //Buchungen[zimmernummer-3].printRechnung();
-//
 }//end main
-//
+//1
 public static int abfrageZimmerart(){
     print("Welche Zimmerart möchten Sie buchen? Einzelzimmer: 1, Doppelzimmer: 2, Tripplezimmer: 3 oder Ferienwohnung: 4.");
     int preiskategorie = s.nextInt();
@@ -323,8 +342,6 @@ public static int getBelegungWohnung(Zimmer[]Belegung){
     }else print("Wohnungen belegt");
     return 0;
 }
-
-
 public static boolean abfrageFruehstueck(){
     print("Moechten Sie Fruehstueck buchen?");
     boolean fruehstueck = false;
@@ -348,8 +365,6 @@ public static int abfrageAnzahlTage(){
     int anzahlTage = s.nextInt();
     return anzahlTage;
 }
-
-
 public static boolean abfrageHaustier(){
     print("Moechten Sie mit Haustier anreisen?");
     boolean haustier = false;
@@ -372,15 +387,13 @@ public static boolean abfrageZimmerservice(){
     }
     return zimmerservice;
 }
-
-
 public static int abfrageKundennummer(String name, String geburtsdatum, Kunde[]Kunden){
     for(int i = 0; i<Kunden.length; i++){
         if((Kunden[i].getName() == name) & (Kunden[i].getGeburtsdatum() == geburtsdatum)){
             return i;//Verwendung als Kundennummer
         }
     }
-    return -1;//Verwendung als Kundennummer
+    return 0;//Verwendung als Kundennummer
 }
 public static String abfrageName(){
     print("Bitte geben Sie ihren Namen ein.");
@@ -412,13 +425,13 @@ public static boolean abfragePremiumkunde(){
 
 public static boolean abfrageEinverstanden(){
     print("Sind Sie damit einverstanden?");
-    boolean einverstanden = false;
+    boolean einverstanden;
     String input = s.next();
-    if(input.equals("Ja") | input.equals("ja") | input.equals("j")){
+    if(Objects.equals(input, "Ja") | Objects.equals(input, "ja") | Objects.equals(input, "j")){
         einverstanden = true;
-    }else if(input.equals("Nein")| input.equals("nein") | input.equals("n") ){
+    }else if(Objects.equals(input, "Nein") | Objects.equals(input, "nein") | Objects.equals(input, "n")){
         einverstanden = false;
-    }
+    }else einverstanden = false;
     return einverstanden;
 }
 public static void zimmerBelegungAnzeigen(Zimmer[]Belegung){
@@ -441,5 +454,6 @@ public static void zimmerBuchungAnzeigen(Buchung[]Buchungen){
     print("Welches Zimmer moechten Sie aufrufen? 1, 2, 3...");
     Buchungen[s.nextInt()].print();
 }
+//public static double summe(){
 
 }//end class
