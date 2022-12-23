@@ -8,7 +8,7 @@ package hotel3;
  *
  * @author Vincent
  */
-public class Zimmer {
+public class Zimmer extends Hotel3{
     //Attribute
     private int zimmernummer;
     private int preiskategorie = 0;
