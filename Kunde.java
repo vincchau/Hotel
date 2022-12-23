@@ -8,7 +8,7 @@ package hotel3;
  *
  * @author Vincent
  */
-public class Kunde {
+public class Kunde extends Hotel3{
     //Attribute
     private String name = "Max Mustermann";
     private String anschrift = "Musterstr. 31, 42069 Musterstadt";
