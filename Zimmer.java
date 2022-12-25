@@ -1,46 +1,67 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package hotel3;
-
-import java.util.prefs.PreferenceChangeListener;
-
-/**
- *
- * @author Vincent
- */
-public class Zimmer extends Hotel3{
+public class Zimmer extends Main{
     //Attribute
     private int zimmernummer;
-    private int preiskategorie = 0;
-    private double preisProZimmer = 0.0;
-    private int zimmerProKategorie = 2;
-    private boolean belegt = false;
-    
+    private int preiskategorie;
+    private double preisProZimmer;
+    private int zimmerProKategorie;
+    private boolean belegt;
+
     //Konstruktoren
-    public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt){//Ablage der Zimmer
+    public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
         this.preisProZimmer = preisProZimmer;
         this.zimmerProKategorie = zimmerProKategorie;
         this.belegt = belegt;
-    }
-    public Zimmer(){
-        this.preiskategorie = 0;
-        this.preisProZimmer = 0.0;
-        this.zimmerProKategorie = 2;
-        this.belegt = false;
-    }
+    }//end constructor Zimmer()
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer){
-        this.zimmernummer = zimmernummer;
+        this. zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
         this.preisProZimmer = preisProZimmer;
         this.zimmerProKategorie = 2;
         this.belegt = false;
-    }
-    
+    }//end constructor Zimmer()
+    public Zimmer(){
+        this.zimmernummer = 0;
+        this.preiskategorie = 0;
+        this.preisProZimmer = 0.0;
+        this.zimmerProKategorie = 2;
+        this.belegt = false;
+    }//end constructor Zimmer()
+    //
     //Methoden
+    public void print(){
+        if (preiskategorie == 1){
+            System.out.println("---Einzelzimmer---");
+        }else if(preiskategorie == 2){
+            System.out.println("---Doppelzimmer---");
+        } else if(preiskategorie == 3){
+            System.out.println("---Tripplezimmer");
+        }else System.out.println("---Ferienwohnung---");
+        System.out.println("Zimmernummer " +  zimmernummer + ":");
+        System.out.println("Preiskategorie: " + preiskategorie);
+        System.out.println("Preis Pro Zimmer: " + preisProZimmer + "€");
+        System.out.println("Zimmer Pro Kategorie: " + zimmerProKategorie);
+        if(belegt){
+            System.out.println("--Zimmer belegt--");
+        }else System.out.println("--Zimmer frei--");
+    }//end methode print()
+    public void printBelegt(){
+        System.out.println("Zimmer " + zimmernummer + ": ");
+        if(preiskategorie == 1){
+            System.out.println("---Einzelzimmer---");
+        }else if(preiskategorie == 2){
+            System.out.println("---Doppelzimmer---");
+        } else if(preiskategorie == 3){
+            System.out.println("---Tripplezimmer");
+        }else System.out.println("---Ferienwohnung---");
+
+        if(belegt){
+            System.out.println("--Zimmer belegt--");
+        }else System.out.println("--Zimmer frei--");
+    }//end methode printBelegt()
+    //
+    //Notwendige getter- und setter methoden
     public void setZimmernummer(int zimmernummer){
         this.zimmernummer = zimmernummer;
     }
@@ -71,39 +92,4 @@ public class Zimmer extends Hotel3{
     public boolean getBelegt(){
         return belegt;
     }
-    public void print(){
-        if(preiskategorie == 1){
-            System.out.println("---Einzelzimmer---");
-        }else if(preiskategorie == 2){
-            System.out.println("---Doppelzimmer---");
-        } else if(preiskategorie == 3){
-            System.out.println("---Tripplezimmer");
-        }else System.out.println("---Ferienwohnung---");
-        System.out.println("Zimmernummer " +  zimmernummer + ":");
-        System.out.println("Preiskategorie: " + preiskategorie);
-        System.out.println("Preis Pro Zimmer: " + preisProZimmer);
-        System.out.println("Zimmer Pro Kategorie: " + zimmerProKategorie);
-        System.out.println("Zimmer belegt? " + belegt);
-    }
-    public void printBelegt(){
-        System.out.println("Zimmer " + zimmernummer + ": ");
-        if(preiskategorie == 1){
-            System.out.println("---Einzelzimmer---");
-        }else if(preiskategorie == 2){
-            System.out.println("---Doppelzimmer---");
-        } else if(preiskategorie == 3){
-            System.out.println("---Tripplezimmer");
-        }else System.out.println("---Ferienwohnung---");
-        
-        if(belegt){
-            System.out.println("Zimmer belegt.");
-        }else System.out.println("Zimmer frei.");
-    }
-
-    public double rechner(){
-        double ergebnis = 0.d;
-        ergebnis = getPreisProZimmer();
-        return ergebnis;
-    }
-
-}//end class
+}
