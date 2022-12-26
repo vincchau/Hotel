@@ -3,6 +3,7 @@ import java.text.DecimalFormat;
 public class Main {
     public static DecimalFormat dF = new DecimalFormat("#.00");
     public static Scanner s = new Scanner(System.in);//Deklaration eines Scanners für die gesamte main Class
+    public static Scanner sd = new Scanner(System.in).useDelimiter("\s");//Deklaration eines Scanners mit delimiter zur überbrückung von leerzeichen
     public static void print(String p){System.out.println(p);}//Print funktion zum Abkürzen des Schreibaufwands
     public static int k = 1;//Deklaration und initialisierung einer laufvariable. Verwendet als kundennummer
     private static Kunde [] Kunden = new Kunde[100];
@@ -30,7 +31,7 @@ public class Main {
             switch(auswahl){
                 case 1:
                     int b = 1, kundennummer = 0;
-                    String name = null, vorname = null, anschrift = null, geburtsdatum = null;
+                    String name = null, anschrift = null, geburtsdatum = null;
                     do{
                         //Deklaration der notwendigen Variablen
                         int preiskategorie, zimmernummer = 0, anzahlPersonen, anzahlTage;
@@ -130,14 +131,13 @@ public class Main {
                         }
                         if(name == null) {
                             name = abfrageName();
-                            vorname = abfrageVorname();
                             geburtsdatum = abfrageGeburtsdatum();
-                            kundennummer = abfrageKundennummer(name, vorname, geburtsdatum);
+                            kundennummer = abfrageKundennummer(name, geburtsdatum);
                             if (kundennummer == 0) {
                                 anschrift = abfrageAnschrift();
                                 premiumkunde = abfragePremiumkunde();
                                 kundennummer = k;
-                                Kunden[k] = new Kunde(name, vorname, anschrift, geburtsdatum, premiumkunde, zimmernummer);
+                                Kunden[k] = new Kunde(name, anschrift, geburtsdatum, premiumkunde, zimmernummer);
                                 k++;
                             } else {
                                 anschrift = Kunden[kundennummer].getAnschrift();
@@ -149,7 +149,7 @@ public class Main {
                         } else if (b == 3) {
                             Kunden[kundennummer].setZimmernummer3(zimmernummer);
                         }
-                        Buchungen[zimmernummer-1].setName(name); Buchungen[zimmernummer-1].setVorname(vorname); Buchungen[zimmernummer-1].setGeburtsdatum(geburtsdatum);
+                        Buchungen[zimmernummer-1].setName(name); Buchungen[zimmernummer-1].setGeburtsdatum(geburtsdatum);
                         Buchungen[zimmernummer-1].setAnschrift(anschrift); Buchungen[zimmernummer-1].setPremiumkunde(premiumkunde);
                         Buchungen[zimmernummer-1].setSumme();
                         Belegung[zimmernummer-1].setBelegt(true);
@@ -281,26 +281,22 @@ public class Main {
         print("Moechten Sie zimmerservice buchen?");
         return abfrageEinverstanden();
     }//end Methode abfrageZimmerservice()
-    public static int abfrageKundennummer(String name, String vorname, String geburtsdatum){
+    public static int abfrageKundennummer(String name, String geburtsdatum){
         for(int i = k-1; i>0; i--){
-            if((Kunden[i].getName().equals(name)) & (Kunden[i].getVorname().equals(vorname)) & (Kunden[i].getGeburtsdatum().equals(geburtsdatum))){
+            if((Kunden[i].getName().equals(name)) & (Kunden[i].getGeburtsdatum().equals(geburtsdatum))){
                 return i;
             }
         }
         return 0;
     }//end Methode abfrageKundennummer()
     public static String abfrageName(){
-        print("Bitte geben Sie Ihren Nachnamen ein.");
-        return s.next();
-
+        print("Bitte geben Sie Ihren Vor- und Nachnamen ein.");
+        return sd.nextLine();
     }//end Methode abfrageName()
-    public static String abfrageVorname(){
-        print("Bitte geben Sie Ihren Vornamen ein.");
-        return s.next();
-    }//end Methode abfrageVorname()
     public static String abfrageAnschrift(){
+
         print("Bitte geben Sie ihre Anschrift ein.");
-        return s.next();
+        return sd.nextLine();
     }//end Methode abfrageAnschrift()
     public static String abfrageGeburtsdatum(){
         print("Bitte geben Sie ihr Geburtsdatum ein.");
@@ -344,10 +340,9 @@ public class Main {
     //AUSWAHL MÖGLICHKEIT 6
     public static void buchungKundeAnzeigen(){
         print("Bitte geben Sie den Vor- und Nachname des Kunden ein dessen Buchung Sie aufrufen moechten?");
-        String vorname = s.next();
-        String name = s.next();
+        String name = sd.nextLine();
         for(int d = k-1; d>0; d--){
-            if(Kunden[d].getVorname().equals(vorname) & Kunden[d].getName().equals(name)){
+            if(Kunden[d].getName().equals(name)){
                 Kunden[d].print();
                 Buchungen[Kunden[d].getZimmernummer1()-1].print();
                 if(Kunden[d].getZimmernummer2() != 0){
@@ -365,18 +360,18 @@ public class Main {
         double gesamtSumme = 0.00;
         print("Geben Sie die Zimmernummer ein für die Sie die Rechnung erstellen wollen.");
         int n = s.nextInt();
-        if(Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getVorname(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer2() != 0){
+        if(Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer2() != 0){
             print("Moechten Sie fuer alle verknuepften Zimmer eine Rechnung drucken?");
             if(abfrageEinverstanden()){
                 print("---Rechnung---");
                 Buchungen[n-1].printKundendaten();
                 Buchungen[n-1].print();
                 gesamtSumme += Buchungen[n-1].getSumme();
-                Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getVorname(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer2()].print();
-                gesamtSumme += Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getVorname(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer2()].getSumme();
-                if(Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getVorname(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer3() != 0){
-                    Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getVorname(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer3()].print();
-                    gesamtSumme += Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getVorname(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer3()].getSumme();
+                Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer2()].print();
+                gesamtSumme += Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer2()].getSumme();
+                if(Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer3() != 0){
+                    Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer3()].print();
+                    gesamtSumme += Buchungen[Kunden[abfrageKundennummer(Buchungen[n-1].getName(), Buchungen[n-1].getGeburtsdatum())].getZimmernummer3()].getSumme();
                 }
                 printSumme(gesamtSumme);
             }
@@ -391,14 +386,13 @@ public class Main {
     //AUSWAHL MÖGLICHKEIT 8
     public static void neuenKundenAnlegen(){
         String name = abfrageName();
-        String vorname = abfrageVorname();
         String geburtsdatum = abfrageGeburtsdatum();
-        int kundennummer = abfrageKundennummer(name, vorname, geburtsdatum);
+        int kundennummer = abfrageKundennummer(name, geburtsdatum);
         if(kundennummer != 0){
             Kunden[kundennummer].print();
         } else {
             String anschrift = abfrageAnschrift(); boolean premiumkunde = abfragePremiumkunde();
-            Kunden[k] = new Kunde(name, vorname, anschrift, geburtsdatum, premiumkunde, 0);
+            Kunden[k] = new Kunde(name, anschrift, geburtsdatum, premiumkunde, 0);
             Kunden[k].print();
             k++;
         }
@@ -407,10 +401,9 @@ public class Main {
     //AUSWAHL MÖGLICHKEIT 9
     public static void kundenAnzeigen(){
         print("Bitte geben Sie den Vor- und Nachname des Kunden ein dessen Kundendaten Sie aufrufen moechten?");
-        String vorname = s.next();
-        String name = s.next();
+        String name = sd.nextLine();
         for(int d = k-1; d>0; d--){
-            if(Kunden[d].getVorname().equals(vorname) & Kunden[d].getName().equals(name)){
+            if(Kunden[d].getName().equals(name)){
                 Kunden[d].print();
                 if(Kunden[d].getZimmernummer1() != 0){
                     System.out.println("Zimmer " + Kunden[d].getZimmernummer1());
@@ -450,25 +443,25 @@ public class Main {
                 case 0:
                     Belegung[i] = new Einzelzimmer(1, true); Belegung[i].setBelegt(true);
                     Buchungen[i] = new Buchung(1, 1, 1, 3); Buchungen[i].setBalkon(true);Buchungen[i].setFruehstueck(true);
-                    Buchungen[i].setName("Meier"); Buchungen[i].setVorname("Moritz"); Buchungen[i].setAnschrift("Konrad-Adenauer-Allee 31, 53111 Bonn");
+                    Buchungen[i].setName("Moritz Meier"); Buchungen[i].setAnschrift("Konrad-Adenauer-Allee 31, 53111 Bonn");
                     Buchungen[i].setGeburtsdatum("28.04.1974"); Buchungen[i].setPremiumkunde(true); Buchungen[i].setSumme();
-                    Kunden[k] = new Kunde("Meier", "Moritz", "Konrad-Adenauer-Allee 31, 53111 Bonn", "28.04.1974", true, 1);
+                    Kunden[k] = new Kunde("Moritz Meier", "Konrad-Adenauer-Allee 31, 53111 Bonn", "28.04.1974", true, 1);
                     k++;
                     break;
                 case 1:
                     Belegung[i] = new Einzelzimmer(2, 1, 50.00, 2, true, false); Belegung[i].setBelegt(true);
                     Buchungen[i] = new Buchung(2, 1, 1, 2); Buchungen[i].setBalkon(false); Buchungen[i].setFruehstueck(true);
-                    Buchungen[i].setName("Müller"); Buchungen[i].setVorname("Maria"); Buchungen[i].setAnschrift("Hohe Str. 32, 51069 Köln");
+                    Buchungen[i].setName("Maria Müller"); Buchungen[i].setAnschrift("Hohe Str. 32, 51069 Köln");
                     Buchungen[i].setGeburtsdatum("04.12.1968"); Buchungen[i].setPremiumkunde(false); Buchungen[i].setSumme();
-                    Kunden[k] = new Kunde("Müller", "Maria", "Hohe Str. 32, 51069 Köln", "04.12.1968", false, 2);
+                    Kunden[k] = new Kunde("Maria Müller", "Hohe Str. 32, 51069 Köln", "04.12.1968", false, 2);
                     k++;
                     break;
                 case 2:
                     Belegung[i] = new Doppelzimmer(3, true, false); Belegung[i].setBelegt(true);
                     Buchungen[i] = new Buchung(3, 2, 2, 7); Buchungen[i].setBalkon(true); Buchungen[i].setFruehstueck(false);
-                    Buchungen[i].setName("Scholz"); Buchungen[i].setVorname("Olaf"); Buchungen[i].setAnschrift("Willy-Brandt-Str. 1, 10557 Berlin");
+                    Buchungen[i].setName("Olaf Scholz"); Buchungen[i].setAnschrift("Willy-Brandt-Str. 1, 10557 Berlin");
                     Buchungen[i].setGeburtsdatum("14.06.1958"); Buchungen[i].setPremiumkunde(true); Buchungen[i].setSumme();
-                    Kunden[k] = new Kunde("Scholz", "Olaf", "Willy-Brandt-Straße 1, 10557 Berlin", "14.06.1958", true, 3);
+                    Kunden[k] = new Kunde("Olaf Scholz", "Willy-Brandt-Straße 1, 10557 Berlin", "14.06.1958", true, 3);
                     k++;
                     break;
                 case 3:
@@ -486,9 +479,9 @@ public class Main {
                 case 7:
                     Belegung[i] = new Wohnung(8); Belegung[i].setBelegt(true);
                     Buchungen[i] = new Buchung(8, 4, 5, 4); Buchungen[i].setHaustier(false); Buchungen[i].setZimmerservice(true);
-                    Buchungen[i].setName("Mond"); Buchungen[i].setVorname("Anelise"); Buchungen[i].setAnschrift("Mondstr. 17, 68730 Mond");
+                    Buchungen[i].setName("Anelise Mond"); Buchungen[i].setAnschrift("Mondstr. 17, 68730 Mond");
                     Buchungen[i].setGeburtsdatum("01.01.0000"); Buchungen[i].setPremiumkunde(false); Buchungen[i].setSumme();
-                    Kunden[k] = new Kunde("Mond", "Anelise", "Mondstr. 17 68730 Mond", "01.01.0000", false, 8);
+                    Kunden[k] = new Kunde("Anelise Mond", "Mondstr. 17 68730 Mond", "01.01.0000", false, 8);
                     k++;
                     break;
                 default: break;

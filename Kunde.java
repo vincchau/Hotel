@@ -1,16 +1,14 @@
 public class Kunde extends Main{
     //Attribute
     private String name;
-    private String vorname;
     private String anschrift;
     private String geburtsdatum;
     private boolean premiumkunde;
     private int zimmernummer1, zimmernummer2, zimmernummer3;
     //
     //Konstruktoren
-    public Kunde(String name, String vorname, String anschrift, String geburtsdatum, boolean premiumkunde, int zimmernummer1){
+    public Kunde(String name, String anschrift, String geburtsdatum, boolean premiumkunde, int zimmernummer1){
         this.name = name;
-        this.vorname = vorname;
         this.anschrift = anschrift;
         this.geburtsdatum = geburtsdatum;
         this.premiumkunde = premiumkunde;
@@ -20,17 +18,18 @@ public class Kunde extends Main{
     }//end constructor Kunde
     public Kunde(){
         this.name = "";
-        this.vorname = " ";
         this.anschrift = " ";
         this.geburtsdatum = " ";
         this.premiumkunde = false;
         this.zimmernummer1 = 0;
+        this.zimmernummer2 = 0;
+        this.zimmernummer3 = 0;
     }//end constructor Kunde
     //
     //Methoden
     public void print(){
         System.out.println("---Kundendaten---");
-        System.out.println("Name: " + vorname + " " + name);
+        System.out.println("Name: " + name);
         System.out.println("Anschrift: " + anschrift);
         System.out.println("Geburtsdatum: " + geburtsdatum);
         if(premiumkunde){
@@ -45,12 +44,6 @@ public class Kunde extends Main{
     }
     public String getName(){
         return name;
-    }
-    public void setVorname(String vorname){
-        this.vorname = vorname;
-    }
-    public String getVorname(){
-        return vorname;
     }
     public void setAnschrift(String anschrift){
         this.anschrift = anschrift;

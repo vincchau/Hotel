@@ -5,7 +5,7 @@ public class Buchung extends Main{
     private int zimmernummer, preiskategorie, anzahlTage, anzahlPersonen;
     private boolean balkon, einzelzimmerzuschlag, fruehstueck;
     private boolean haustier, zimmerservice;
-    private String name, vorname, anschrift, geburtsdatum; private boolean premiumkunde;
+    private String name, anschrift, geburtsdatum; private boolean premiumkunde;
     private double summe;
 
     //
@@ -52,7 +52,7 @@ public class Buchung extends Main{
     }//end Methode printBuchung()
     public void printKundendaten(){
         System.out.println("Kundendaten:");
-        System.out.println("Name: " + vorname + " " + name);
+        System.out.println("Name: " + name);
         System.out.println("Anschrift: " + anschrift);
         System.out.println("Geburtsdatum: " + geburtsdatum);
         if(premiumkunde){
@@ -119,12 +119,6 @@ public class Buchung extends Main{
     }
     public String getName(){
         return name;
-    }
-    public void setVorname(String vorname){
-        this.vorname = vorname;
-    }
-    public String getVorname(){
-        return vorname;
     }
     public void setAnschrift(String anschrift){
         this.anschrift = anschrift;
