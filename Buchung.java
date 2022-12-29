@@ -10,29 +10,63 @@ public class Buchung extends Main{
 
     //
     //Konstruktoren
+    public Buchung(int zimmernummer, int preiskategorie, int anzahlPersonen, int anzahlTage, boolean balkon, boolean einzelzimmerzuschlag, boolean fruehstueck, boolean haustier, boolean zimmerservice, String name, String anschrift, String geburtsdatum, boolean premiumkunde){
+        this.zimmernummer = zimmernummer;
+        this.preiskategorie = preiskategorie;
+        this.anzahlPersonen = anzahlPersonen;
+        this.anzahlTage = anzahlTage;
+        this.balkon = balkon;
+        this.einzelzimmerzuschlag = einzelzimmerzuschlag;
+        this.fruehstueck = fruehstueck;
+        this.haustier = haustier;
+        this.zimmerservice = zimmerservice;
+        this.name = name;
+        this.anschrift = anschrift;
+        this.geburtsdatum = geburtsdatum;
+        this.premiumkunde = premiumkunde;
+        this.summe = summeBerechnen();
+    }//end constructor Buchung()
     public Buchung(int zimmernummer, int preiskategorie, int anzahlPersonen, int anzahlTage){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
         this.anzahlPersonen = anzahlPersonen;
         this.anzahlTage = anzahlTage;
     }//end constructor Buchung()
+    public Buchung(){
+        this.zimmernummer = 0;
+        this.preiskategorie = 0;
+        this.anzahlPersonen = 0;
+        this.anzahlTage = 0;
+        this.balkon = false;
+        this.einzelzimmerzuschlag = false;
+        this.fruehstueck = false;
+        this.haustier = false;
+        this.zimmerservice = false;
+        this.name = null;
+        this.anschrift = null;
+        this.geburtsdatum = null;
+        this.premiumkunde = false;
+        this.summe = 0.0;
+    }
     //
     //Methoden
     public double summeBerechnen(){
+        double z = 0.00;
         switch(preiskategorie) {
-            case 1: summe = anzahlTage *= 50.00;break;
-            case 2: summe = anzahlTage * 75.00; break;
-            case 3: summe = anzahlTage * 100.00; break;
-            case 4: summe = anzahlTage * 150.00; break;
+            case 1: z += anzahlTage * 50.00;break;
+            case 2: z += anzahlTage * 75.00; break;
+            case 3: z += anzahlTage * 100.00; break;
+            case 4: z += anzahlTage * 150.00; break;
+            default: break;
         }
-        if (balkon) summe += 10.00;
-        if (fruehstueck) summe += 5.00;
-        if (einzelzimmerzuschlag) summe += 25.00;
-        if (haustier) summe += 10.00;
-        if (zimmerservice) summe += 10;
-        if(premiumkunde) summe *= 0.95;
-        summe *= 1.19;
-        return Math.round(summe*100)/100;
+        if(balkon){ z += 10.00;}
+        if(fruehstueck){ z += anzahlPersonen * anzahlTage * 5.00;}
+        if(einzelzimmerzuschlag){ z += 25.00;}
+        if(haustier){ z += 10.00;}
+        if(zimmerservice){ z += 10.00;}
+        if(premiumkunde){ z *= 0.95;}
+        z *= 1.19;
+        return Math.round(z*100.00)/100.00;
     }//end Methode summeBerechnen()
     public void print(){
         switch(preiskategorie){

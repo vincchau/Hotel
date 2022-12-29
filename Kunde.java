@@ -16,6 +16,15 @@ public class Kunde extends Main{
         this.zimmernummer2 = 0;
         this.zimmernummer3 = 0;
     }//end constructor Kunde
+    public Kunde(String name, String anschrift, String geburtsdatum, boolean premiumkunde){
+        this.name = name;
+        this.anschrift = anschrift;
+        this.geburtsdatum = geburtsdatum;
+        this.premiumkunde = premiumkunde;
+        this.zimmernummer1 = 0;
+        this.zimmernummer2 = 0;
+        this.zimmernummer3 = 0;
+    }
     public Kunde(){
         this.name = "";
         this.anschrift = " ";
@@ -28,14 +37,14 @@ public class Kunde extends Main{
     //
     //Methoden
     public void print(){
-        System.out.println("---Kundendaten---");
+        System.out.println("Kundendaten:");
         System.out.println("Name: " + name);
         System.out.println("Anschrift: " + anschrift);
         System.out.println("Geburtsdatum: " + geburtsdatum);
         if(premiumkunde){
             System.out.println("Premiumkunde");
         }//end if
-        System.out.println("");
+        System.out.println("----------");
     }//end method print
     //
     //notwendige getter- und setter Methoden
