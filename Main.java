@@ -187,11 +187,11 @@ public class Main {
         }//end while(b)
     }//end Methode buchungAusfuehren(b)
     public static int abfrageZimmerart(){
-        print("Welche Zimmerart möchten Sie buchen? Einzelzimmer: 1, Doppelzimmer: 2, Tripplezimmer: 3 oder Ferienwohnung: 4.");
+        print("Welche Zimmerart möchten Sie buchen? 1. Einzelzimmer, 2. Doppelzimmer, 3. Tripplezimmer oder 4. Ferienwohnung");
         return s.nextInt();
     }//end Methode abfrageZimmerart()
     public static boolean abfrageBalkon(){
-        print("Möchten Sie ein Zimmer mit Balkon buchen? true, false.");
+        print("Möchten Sie ein Zimmer mit Balkon buchen?");
         return abfrageEinverstanden();
     }//end Methode abfrageBalkon()
     public static int getBelegungEinzelzimmerBalkon(Zimmer[]Belegung){
