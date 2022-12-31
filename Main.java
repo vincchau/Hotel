@@ -372,7 +372,7 @@ public class Main {
             print("---Rechnung---");
             Buchungen[r - 1].printKundendaten();
             Buchungen[r - 1].print();
-            printSumme(Buchungen[r - 1].getSumme(), Buchungen[r-1].getPremiumkunde);
+            printSumme(Buchungen[r - 1].getSumme(), Buchungen[r-1].getPremiumkunde());
         }else print("Das Zimmer ist nicht belegt");
     }//end Methode rechnungZimmerErstellen()
     //
@@ -438,18 +438,18 @@ public class Main {
                 Buchungen[Kunden[kundennummer].getZimmernummer3()-1].print();
                 gesamtSumme += Buchungen[Kunden[kundennummer].getZimmernummer3()-1].getSumme();
             }
-            printSumme(gesamtSumme, Kunden[kundennummer].getPremiumkunde);
+            printSumme(gesamtSumme, Kunden[kundennummer].getPremiumkunde());
         }else print("Fuer diesen Kunden liegt keine Buchung vor.");
     }//end Methode rechnungKundeErstellen()
     //
     //Methode zur Ausgabe der übergebenen Summe inkl. MwSt.
     public static void printSumme(double summe, boolean premiumkunde){
-        System.out.println("Netto: " + summe/1.19);
+        System.out.println("Netto: " + dF.format(Math.round((summe/1.19)*100)/100) + "€");
         if(premiumkunde){
-            System.out.println("Netto ohne Premiumkundenrabatt: " + summe/1.19/0.95);       
+            System.out.println("Netto ohne Premiumkundenrabatt: " + dF.format(Math.round((summe/1.19/0.95)*100.00)/100.00) + "€");
         }
-        System.out.println("MwSt.: " + summe-summe/1.19);
-        System.out.println("Brutto: " + summe);
+        System.out.println("MwSt.: " + dF.format(Math.round((summe - summe / 1.19)*100.00)/100.00) + "€");
+        System.out.println("Brutto: " + dF.format(Math.round(summe*100)/100) + "€");
     }//end Methode printSumme()
     //
     //Methode zur vereinfachung der Abfrage bei Auswahlmöglichkeiten

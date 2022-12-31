@@ -100,49 +100,49 @@ public class Buchung extends Main{
     }//end Methode printTagePersonen()
     public void printEinzelzimmer(){
         System.out.println("Zimmer " + zimmernummer + ": Einzelzimmer");
-        System.out.println("Preiskategorie: " + preiskategorie + " --- " + anzahlTage*50.00);
+        System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*50.00) + "€");
         printTagePersonen();
         if(balkon){
-            System.out.println("Balkon gewuenscht ---  +10.00€");
+            System.out.println("Balkon gewuenscht ---  +10,00€");
         }
         if(fruehstueck){
-            System.out.println("Fruehstueck gebucht --- +" + anzahlTage*anzahlPersonen*5.00 + "€");
+            System.out.println("Fruehstueck gebucht --- +" + dF.format(anzahlTage*anzahlPersonen*5.00) + "€");
         }
         System.out.println("----------");
     }//end Methode printEinzelzimmer()
     public void printDoppelzimmer(){
         System.out.println("Zimmer " + zimmernummer + ": Doppelzimmer");
-        System.out.println("Preiskategorie: " + preiskategorie + " --- " + anzahlTage*75.00 + "€");
+        System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*75.00) + "€");
         printTagePersonen();
         if(balkon){
-            System.out.println("Balkon gewuenscht ---  +10.00€");
+            System.out.println("Balkon gewuenscht ---  +10,00€");
         }
         if(fruehstueck){
-            System.out.println("Fruehstueck gebucht --- +" + anzahlTage*anzahlPersonen*5.00 + "€");
+            System.out.println("Fruehstueck gebucht --- +" + dF.format(anzahlTage*anzahlPersonen*5.00) + "€");
         }
         if(einzelzimmerzuschlag){
-            System.out.println("Einzelzimmerzuschlag gebucht --- +25.00€");
+            System.out.println("Einzelzimmerzuschlag gebucht --- +25,00€");
         }
         System.out.println("----------");
     }//end Methode printDoppelzimmer()
     public void printTripplezimmer(){
         System.out.println("Zimmer " + zimmernummer + ": Tripplezimmer");
-        System.out.println("Preiskategorie: " + preiskategorie + " --- " + anzahlTage*100.00 + "€");
+        System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*100.00) + "€");
         printTagePersonen();
         if(fruehstueck){
-            System.out.println("Fruehstueck gebucht --- +" + anzahlTage*anzahlPersonen*5.00 + "€");
+            System.out.println("Fruehstueck gebucht --- +" + dF.format(anzahlTage*anzahlPersonen*5.00) + "€");
         }
         System.out.println("----------");
     }//end Methode printTripplezimmer()
     public void printWohnung(){
         System.out.println("Zimmer " + zimmernummer + ": Ferienwohnung");
-        System.out.println("Preiskategorie: " + preiskategorie + " --- " + anzahlTage*150.00 + "€");
+        System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*150.00) + "€");
         printTagePersonen();
         if(haustier){
-            System.out.println("Haustier gebucht --- +10.00€");
+            System.out.println("Haustier gebucht --- +10,00€");
         }
         if(zimmerservice){
-            System.out.println("Zimmerservice gebucht --- +10.00€");
+            System.out.println("Zimmerservice gebucht --- +10,00€");
         }
         System.out.println("----------");
     }//end Methode printWohnung()
