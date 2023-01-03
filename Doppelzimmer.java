@@ -3,6 +3,7 @@ public class Doppelzimmer extends Einzelzimmer{
     private boolean einzelzimmerzuschlag;
     //
     //Konstruktoren
+    //erstellt ein Objekt des Typen Doppelzimmer, mit der Besonderheit des Einzelzimmerzuschlag
     public Doppelzimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt, boolean balkon, boolean einzelzimmerzuschlag){
         super(zimmernummer, preiskategorie, preisProZimmer, zimmerProKategorie, belegt, balkon);
         this.einzelzimmerzuschlag = einzelzimmerzuschlag;
@@ -17,6 +18,7 @@ public class Doppelzimmer extends Einzelzimmer{
     }//end constructor Doppelzimmer()
     //
     //Methoden
+    //super Print Methode mit der gesonderten Ausgabe, dass die Möglichekeit besteht auszugeben, dass das Doppelzimmer als Einzelzimmer belegt ist
     public void print(){
         super.print();
         if(einzelzimmerzuschlag){
