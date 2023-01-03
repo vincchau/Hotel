@@ -7,6 +7,7 @@ public class Kunde extends Main{
     private int zimmernummer1, zimmernummer2, zimmernummer3;
     //
     //Konstruktoren
+    //Erstellung eines Objekts des Typen Kunde (buchen)
     public Kunde(String name, String anschrift, String geburtsdatum, boolean premiumkunde, int zimmernummer1){
         this.name = name;
         this.anschrift = anschrift;
@@ -16,6 +17,7 @@ public class Kunde extends Main{
         this.zimmernummer2 = 0;
         this.zimmernummer3 = 0;
     }//end constructor Kunde
+    //Erstellung eines Objekts des Typen Kunde (ganz generelles erstellen eines Kunden)
     public Kunde(String name, String anschrift, String geburtsdatum, boolean premiumkunde){
         this.name = name;
         this.anschrift = anschrift;
@@ -24,7 +26,8 @@ public class Kunde extends Main{
         this.zimmernummer1 = 0;
         this.zimmernummer2 = 0;
         this.zimmernummer3 = 0;
-    }
+    }//end constructor Kunde
+    //Erstellung eines Objekts des Typen Kunde-> quasi um den Kunden wieder blank zu machen
     public Kunde(){
         this.name = "";
         this.anschrift = " ";
@@ -36,6 +39,7 @@ public class Kunde extends Main{
     }//end constructor Kunde
     //
     //Methoden
+    //generelle print Methode aller Attribute der Klasse
     public void print(){
         System.out.println("Kundendaten:");
         System.out.println("Name: " + name);
