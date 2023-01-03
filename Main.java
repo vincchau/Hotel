@@ -28,9 +28,7 @@ public class Main {
                     "6. Buchungen eines Kunden anzeigen, 7. Rechnung für ein Zimmer erstellen, 8. Kunde anlegen, 9. Kunden anzeigen, 10. Gesamtrechnung für einen Kunden erstellen.");
             int auswahl = s.nextInt();
             switch(auswahl){
-                case 1:
-                    buchungAusfuehren();
-                    break;
+                case 1: buchungAusfuehren(); break;
                 case 2: zimmerBelegungAnzeigen(); break;
                 case 3: zimmerAnzeigen(); break;
                 case 4: zimmerBelegungProzent(); break;
@@ -50,8 +48,7 @@ public class Main {
     //AUSWAHL MÖGLICHKEIT 1
     public static void buchungAusfuehren(){
         //Deklaration der notwendigen Variablen
-        int kundennummer = 0;
-        int b = 1;
+        int kundennummer = 0, b = 1;
         while(b<4) {
             int preiskategorie, zimmernummer = 0, anzahlPersonen = 7, anzahlTage = 0;
             boolean balkon = false, einzelzimmerzuschlag = false, fruehstueck = false, haustier = false, zimmerservice = false;
