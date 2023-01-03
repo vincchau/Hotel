@@ -7,6 +7,7 @@ public class Zimmer extends Main{
     private boolean belegt;
 
     //Konstruktoren
+    //Zur Erzeugung eines Objekten des Typen Zimmers mit den Attributen(Erzeugung)
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -14,6 +15,7 @@ public class Zimmer extends Main{
         this.zimmerProKategorie = zimmerProKategorie;
         this.belegt = belegt;
     }//end constructor Zimmer()
+    //Zur Erzeugung eines Objekten des Typen Zimmers mit den Attributen (Buchung)
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer){
         this. zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -21,6 +23,7 @@ public class Zimmer extends Main{
         this.zimmerProKategorie = 2;
         this.belegt = false;
     }//end constructor Zimmer()
+    //Zur Erzeugung eines Objekten des Typen Zimmers mit den Attributen (zurücksetzten)
     public Zimmer(){
         this.zimmernummer = 0;
         this.preiskategorie = 0;
@@ -30,6 +33,7 @@ public class Zimmer extends Main{
     }//end constructor Zimmer()
     //
     //Methoden
+    //Ausgabe des Zimmers mit allen Attributen über die Methode zum schnelleren aurufen
     public void print(){
         if (preiskategorie == 1){
             System.out.println("---Einzelzimmer---");
@@ -46,6 +50,7 @@ public class Zimmer extends Main{
             System.out.println("--Zimmer belegt--");
         }else System.out.println("--Zimmer frei--");
     }//end methode print()
+    //Zum Ausgeben der Zimmerbelegung, lediglich die Ausgabe ob Zimmer belegt ist oder nicht
     public void printBelegt(){
         System.out.println("Zimmer " + zimmernummer + ": ");
         if(preiskategorie == 1){
