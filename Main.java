@@ -11,9 +11,9 @@ public class Main {
     //Class Kunde zur speicherung der Kundendaten
     //Class Zimmer zur speicherung der einzelnen Zimmerdaten
     //Class Buchung zur speicherung der einzelnen Buchungen
-    private static Kunde [] Kunden = new Kunde[100];
-    private static Zimmer [] Belegung = new Zimmer[8];
-    private static Buchung [] Buchungen = new Buchung[8];
+    private static Kunde [] Kunden = new Kunde[100];//Zum Ablegen der Kundedaten
+    private static Zimmer [] Belegung = new Zimmer[8];//Zum Ablegen der einzelnen Zimmer
+    private static Buchung [] Buchungen = new Buchung[8];//zum Ablegen der einzelnen Buchungen an sich
     public static void main(String[] args) {
         //
         //Anfangsbelegung erzeugen
@@ -45,7 +45,7 @@ public class Main {
     //
     //Methoden
     //
-    //AUSWAHL MÖGLICHKEIT 1
+    //AUSWAHL MÖGLICHKEIT 1 - Ausführen einer Buchung eines Zimmers
     public static void buchungAusfuehren(){
         //Deklaration der notwendigen Variablen
         int kundennummer = 0, b = 1;
@@ -183,14 +183,18 @@ public class Main {
             }
         }//end while(b)
     }//end Methode buchungAusfuehren(b)
+    //fragt nach welche Zimmerart sie gerne buchen würden
     public static int abfrageZimmerart(){
         print("Welche Zimmerart möchten Sie buchen? 1. Einzelzimmer, 2. Doppelzimmer, 3. Tripplezimmer oder 4. Ferienwohnung");
         return s.nextInt();
     }//end Methode abfrageZimmerart()
+    //klärt die Balkon Frage fragt also nach ob Balkon erwünscht ist ja oder nein
     public static boolean abfrageBalkon(){
         print("Möchten Sie ein Zimmer mit Balkon buchen?");
         return abfrageEinverstanden();
     }//end Methode abfrageBalkon()
+    //prüft ob ein Einzelzimmer frei ist bzw. schlägt das passende nicht Einzelzimmer vor, was dann eben ein Doppelzimmer wäre.
+    //Fragt dann ob man damit dann einverstanden ist.
     public static int getBelegungEinzelzimmerBalkon(Zimmer[]Belegung){
         if(!Belegung[0].getBelegt()){
             return Belegung[0].getZimmernummer();
@@ -212,6 +216,7 @@ public class Main {
         } else print("Alle Einzel- und Doppelzimmer belegt.");
         return 0;
     }//end Methode getBelegungEinzelzimmerBalkon()
+    //prüft ob ein Doppelzimmer mit Balkon frei ist und fragt nach Einverständnis
     public static int getBelegungDoppelzimmerBalkon(Zimmer[]Belegung){
         if(!Belegung[2].getBelegt()){
             return Belegung[2].getZimmernummer();
@@ -223,6 +228,7 @@ public class Main {
         } else print("Alle Doppelzimmer belegt.");
         return 0;
     }//end Methode getBelegungEinzelzimmerBalkon()
+    //prüft ob ein Einzelzimmer frei ist und fragt nach Einverständnis, wenn alle Einzelzimmer belegt ist fragt er nach Doppelzimmer einverständnis
     public static int getBelegungEinzelzimmer(Zimmer[]Belegung){
         if(!Belegung[0].getBelegt()){
             return Belegung[0].getZimmernummer();
@@ -241,6 +247,7 @@ public class Main {
         }else print("Alle Einzel- und Doppelzimmer belegt.");
         return 0;
     }//end Methode getBelegungEinzelzimmer()
+    //prüft ob ein Doppelzimmer frei ist, wenn alle Zimmer der Kategorie belegt sind wird ausgegeben Alle belegt
     public static int getBelegungDoppelzimmer(Zimmer[]Belegung){
         if(!Belegung[2].getBelegt()){
             return Belegung[2].getZimmernummer();
@@ -249,6 +256,7 @@ public class Main {
         } else print("Alle Doppelzimmer sind belegt.");
         return 0;
     }//end Methode getBelegungDoppelzimmer()
+    //prüft ob ein Tripplezimmer frei ist, wenn alle Zimmer der Kategorie belegt sind wird ausgegeben Alle belegt
     public static int getBelegungTripplezimmer(Zimmer[]Belegung){
         if(!Belegung[4].getBelegt()){
             return Belegung[4].getZimmernummer();
@@ -257,6 +265,7 @@ public class Main {
         }else print("Tripplezimmer belegt");
         return 0;
     }//end Methode getBelegungTripplezimmer()
+    //prüft ob eine Wohnung frei ist, wenn alle Zimmer der Kategorie belegt sind wird ausgegeben Alle belegt
     public static int getBelegungWohnung(Zimmer[]Belegung){
         if(!Belegung[6].getBelegt()){
             return Belegung[6].getZimmernummer();
@@ -265,26 +274,32 @@ public class Main {
         }else print("Wohnungen belegt");
         return 0;
     }//end Methode getBelegungWohnung()
+    //fragt den Kunden ob er Frühstück möchte
     public static boolean abfrageFruehstueck(){
         print("Moechten Sie Fruehstueck buchen?");
         return abfrageEinverstanden();
     }//end Methode abfrageFruehstueck()
+    //fragt den Kunden mit wie vielen Personen die Wohnung gebucht wird
     public static int abfrageAnzahlPersonen(){
         print("Wie viele Personen werden die Ferienwohnung belegen?");
         return s.nextInt();
     }//end Methode abfrageAnzahlPersonen()
+    //fragt den Kunden, wie lange er bleiben möchte
     public static int abfrageAnzahlTage() {
         print("Wie viele Tage moechten Sie bleiben?");
         return s.nextInt();
     }//end Methode abfrageAnzahlTage()
+    //fragt ob der Kunde mit Haustier reisen möchte
     public static boolean abfrageHaustier(){
         print("Moechten Sie mit Haustier anreisen?");
         return abfrageEinverstanden();
     }//end Methode abfrageHaustier()
+    //fragt ob der Kunde gerne Zimmerservice hätte
     public static boolean abfrageZimmerservice(){
         print("Moechten Sie zimmerservice buchen?");
         return abfrageEinverstanden();
     }//end Methode abfrageZimmerservice()
+     //vergleicht bereits eingegeben Namen und Geburtsdaten mit den aktuell eingegeben um somit auszuschließen, dass zu viele Kunden angelegt werden.
     public static int abfrageKundennummer(String name, String geburtsdatum){
         for(int i = k-1; i>0; i--){
             if((Kunden[i].getName().equals(name)) & (Kunden[i].getGeburtsdatum().equals(geburtsdatum))){
@@ -293,38 +308,49 @@ public class Main {
         }
         return 0;
     }//end Methode abfrageKundennummer()
+    //bittet den Kunden seinen Namen einzugeben
     public static String abfrageName(){
         print("Bitte geben Sie Ihren Vor- und Nachnamen ein.");
         return sd.nextLine();
     }//end Methode abfrageName()
+     //bittet den Kunden seine Adresse einzugeben
     public static String abfrageAnschrift(){
 
         print("Bitte geben Sie ihre Anschrift ein.");
         return sd.nextLine();
     }//end Methode abfrageAnschrift()
+    //bittet den Kunden sein Geburtsdatum eizugeben
     public static String abfrageGeburtsdatum(){
         print("Bitte geben Sie ihr Geburtsdatum ein.");
         return s.next();
     }//end Methode abfrageGeburtsdatum()
+    //fragt den Kunden ob er gerne Premiumkunde werden möchte
     public static boolean abfragePremiumkunde(){
         print("Möchten Sie Premiumkunde werden?");
         return abfrageEinverstanden();
     }//end Methode abfragePremiumkunde()
+    //Ende der ersten Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 2
+    //fragt nach für welches Zimmer man gerne die Belegung sehen würde.
+    //Nach einer Eingabe einer Zahl gibt er dann die Belegung für das Zimmer mit der Zimmernummer aus, welche man eingegeben hat.
     public static void zimmerBelegungAnzeigen(){
         print("Welches Zimmer moechten Sie aufrufen? 1, 2, 3...");
         Belegung[s.nextInt()-1].print();
     }//end Methode zimmerBelegungAnzeigen()
+    //Ende Auswahl Möglichkeit 2
     //
     //AUSWAHL MÖGLICHKEIT 3
+    //gibt die Attribute des Zimmers wieder, für das Zimmer das man aufruft.
     public static void zimmerAnzeigen(){
         for(int c = 0; c<Belegung.length; c++){
             Belegung[c].print();
         }
     }//end Methode zimmerAnzeigen()
+    //Ende der dritten Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 4
+    //gibt die Belegung des Hotel in % aus
     public static void zimmerBelegungProzent(){
         double anzahlBelegt = 0;
         for(int o = 0; o<Belegung.length; o++){
@@ -334,14 +360,18 @@ public class Main {
         }
         System.out.println("Das Hotel ist zu " + ((anzahlBelegt/Belegung.length)*100) + "% belegt.");
     }//end Methode zimmerBelegungProzent()
+    //Ende der vierten Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 5
+    //zeigt die Buchung für ein spezielles Zimmer auf abhängig von der Zahl die man eingibt
     public static void zimmerBuchungAnzeigen(){
         print("Welches Zimmer moechten Sie aufrufen? 1, 2, 3...");
         Buchungen[s.nextInt()-1].printBuchung();
     }//end Methode zimmerBuchungAnzeigen()
+    //Ende der fünften Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 6
+    //bittet um Eingabe eines Namens und gibt dann für den Kunden die dazu gehörigen Zimmer aus, die die Person gebucht hat
     public static void buchungKundeAnzeigen(){
         print("Bitte geben Sie den Vor- und Nachname des Kunden ein dessen Buchung Sie aufrufen moechten?");
         String name = sd.nextLine();
@@ -360,8 +390,11 @@ public class Main {
             }//end if(namensvergleich)
         }//end for schleife
     }//end Methode buchungKundeAnzeigen()
+    //Ende der sechsten Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 7
+    //Gibt die gesamt für ein Zimmer aus, mit allen wichtigen Daten,
+    //bzw. gibt aus Zimmer nicht belegt, wenn noch keine Buchung für das Zimmer statt fand
     public static void rechnungZimmerErstellen(){
         print("Geben Sie die Zimmernummer ein für die Sie die Rechnung erstellen wollen.");
         int r = s.nextInt();
@@ -372,8 +405,11 @@ public class Main {
             printSumme(Buchungen[r - 1].getSumme(), Buchungen[r-1].getPremiumkunde());
         }else print("Das Zimmer ist nicht belegt");
     }//end Methode rechnungZimmerErstellen()
+    //Ende der siebten Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 8
+    //Ermöglicht das Anlegen eines neuen Kunden solange der Kunde bisher noch nicht existiert.
+    //Falls Kunde bereits existiert wird ein Fehler bzw. den Kunden gibt es schon ausgegeben.
     public static int neuenKundenAnlegen(){
         String name = abfrageName();
         String geburtsdatum = abfrageGeburtsdatum();
@@ -389,8 +425,10 @@ public class Main {
         }
         return kundennummer;
     }//end Methode neuenKundenAnlegen()
+    //Ende der achten Auswahl Möglichkeit
     //
     //AUSWAHL MÖGLICHKEIT 9
+    //Gibt alle zugehörigen Kundendaten aus, sowie die Zimmer die die Person gebucht hat
     public static void kundenAnzeigen(){
         print("Bitte geben Sie den Vor- und Nachname des Kunden ein dessen Kundendaten Sie aufrufen moechten?");
         String name = sd.nextLine();
@@ -410,7 +448,9 @@ public class Main {
         }//end for schleife
     }//end Methode kundenAnzeigen()
     //
+    //Ende der neunten Auswahl Möglichkeit
     //AUSWAHL MÖGLICHKEIT 10
+    //Erstellung einer gesamt Rechnung für den dazu gehörigen Kunden, denn man eingeben muss
     public static void rechnungKundeErstellen(){
         int kundennummer = 0; double gesamtSumme = 0.0;
         print("Geben Sie den Vor- und Nachnamen des Kunden ein fuer den Sie eine Gesamtrechnung erstellen wollen.");
@@ -438,6 +478,7 @@ public class Main {
             printSumme(gesamtSumme, Kunden[kundennummer].getPremiumkunde());
         }else print("Fuer diesen Kunden liegt keine Buchung vor.");
     }//end Methode rechnungKundeErstellen()
+    //Ende der zehnten Auswahl Möglichkeit
     //
     //Methode zur Ausgabe der übergebenen Summe inkl. MwSt.
     public static void printSumme(double summe, boolean premiumkunde){
