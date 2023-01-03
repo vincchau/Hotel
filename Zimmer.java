@@ -7,7 +7,7 @@ public class Zimmer extends Main{
     private boolean belegt;
 
     //Konstruktoren
-    //Zur Erzeugung eines Objekten des Typen Zimmers mit den Attributen(Erzeugung)
+    //Zur Erzeugung eines Objekten des Typen Zimmers mit Attributen(Erzeugung)
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -15,7 +15,7 @@ public class Zimmer extends Main{
         this.zimmerProKategorie = zimmerProKategorie;
         this.belegt = belegt;
     }//end constructor Zimmer()
-    //Zur Erzeugung eines Objekten des Typen Zimmers mit den Attributen (Buchung)
+    //Zur Erzeugung eines Objekten des Typen Zimmers mit Attributen (Buchung)
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer){
         this. zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -23,7 +23,7 @@ public class Zimmer extends Main{
         this.zimmerProKategorie = 2;
         this.belegt = false;
     }//end constructor Zimmer()
-    //Zur Erzeugung eines Objekten des Typen Zimmers mit den Attributen (zurücksetzten)
+    //Zur Erzeugung eines Objekten des Typen Zimmers ohne Attribute (zurücksetzten)
     public Zimmer(){
         this.zimmernummer = 0;
         this.preiskategorie = 0;
