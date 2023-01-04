@@ -2,14 +2,13 @@ public class Wohnung extends Zimmer{
     //Attribute
     //
     //Konstruktoren
-    //erzeugt ein Objekt des Typen Wohnung mit den für ihn relevanten Infos
+    //Erstellung eines Objekts des Typs Tripplezimmer (inklusive Übergabe der zur Anlage eines Tripplezimmers notwendigen Attribute und für die Zimmerart festgelegten Werte).
     public Wohnung(int zimmernummer){
         super(zimmernummer, 4, 150.00);
     }
     //
     //Methoden
-    //ruft die Zimmer print Methode auf
-    public void print(){
+    public void print(){//Gibt alle Zimmerdaten aus.
         super.print();
         System.out.println("");
     }

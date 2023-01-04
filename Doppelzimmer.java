@@ -3,23 +3,24 @@ public class Doppelzimmer extends Einzelzimmer{
     private boolean einzelzimmerzuschlag;
     //
     //Konstruktoren
-    //erstellt ein Objekt des Typen Doppelzimmer, mit der Besonderheit des Einzelzimmerzuschlag
+    //Erstellung eines Objekts des Typs Doppelzimmer (inklusive Übergabe aller Attribute).
     public Doppelzimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt, boolean balkon, boolean einzelzimmerzuschlag){
         super(zimmernummer, preiskategorie, preisProZimmer, zimmerProKategorie, belegt, balkon);
         this.einzelzimmerzuschlag = einzelzimmerzuschlag;
     }//end constructor Doppelzimmer()
+    //Erstellung eines Objekts des Typs Einzelzimmer (ohne übergebene Attribute).
     public Doppelzimmer(){
         super();
         this.einzelzimmerzuschlag = false;
     }//end constructor Doppelzimmer()
+    //Erstellung eines Objekts des Typs Einzelzimmer (inklusive Übergabe einiger Attribute).
     public Doppelzimmer(int zimmernummer, boolean balkon, boolean einzelzimmerzuschlag){
         super(zimmernummer, balkon, einzelzimmerzuschlag);
         this.einzelzimmerzuschlag = einzelzimmerzuschlag;
     }//end constructor Doppelzimmer()
     //
     //Methoden
-    //super Print Methode mit der gesonderten Ausgabe, dass die Möglichekeit besteht auszugeben, dass das Doppelzimmer als Einzelzimmer belegt ist
-    public void print(){
+    public void print(){//Gibt alle Zimmerdaten inklusive Balkon und Einzelzimmerzuschlag aus.
         super.print();
         if(einzelzimmerzuschlag){
             System.out.println("Als Einzelzimmer belegt.");
@@ -27,7 +28,7 @@ public class Doppelzimmer extends Einzelzimmer{
         System.out.println("");
     }//end methode print()
     //
-    //notwendige getter- und setter methoden
+    //Notwendige Getter- und Setter-Methoden
     public void setEinzelzimmerzuschlag(boolean einzelzimmerzuschlag){
         this.einzelzimmerzuschlag = einzelzimmerzuschlag;
     }

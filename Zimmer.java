@@ -7,7 +7,7 @@ public class Zimmer extends Main{
     private boolean belegt;
 
     //Konstruktoren
-    //Zur Erzeugung eines Objekten des Typen Zimmers mit Attributen(Erzeugung)
+    //Erstellung eines Objekts des Typs Zimmer (inklusive übergabe aller Zimmerdaten).
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -15,7 +15,7 @@ public class Zimmer extends Main{
         this.zimmerProKategorie = zimmerProKategorie;
         this.belegt = belegt;
     }//end constructor Zimmer()
-    //Zur Erzeugung eines Objekten des Typen Zimmers mit Attributen (Buchung)
+    //Erstellung eines Objekts des Typs Zimmer (inklusive übergabe einiger Attribute).
     public Zimmer(int zimmernummer, int preiskategorie, double preisProZimmer){
         this. zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -23,7 +23,7 @@ public class Zimmer extends Main{
         this.zimmerProKategorie = 2;
         this.belegt = false;
     }//end constructor Zimmer()
-    //Zur Erzeugung eines Objekten des Typen Zimmers ohne Attribute (zurücksetzten)
+    //Erstellung eines Objekts des Typs Zimmer (ohne übergebene Attribute).
     public Zimmer(){
         this.zimmernummer = 0;
         this.preiskategorie = 0;
@@ -33,8 +33,7 @@ public class Zimmer extends Main{
     }//end constructor Zimmer()
     //
     //Methoden
-    //Ausgabe des Zimmers mit allen Attributen über die Methode zum schnelleren aurufen
-    public void print(){
+    public void print(){//Gibt alle Zimmerdaten abhängig von der Zimmerart aus.
         if (preiskategorie == 1){
             System.out.println("---Einzelzimmer---");
         }else if(preiskategorie == 2){
@@ -50,8 +49,7 @@ public class Zimmer extends Main{
             System.out.println("--Zimmer belegt--");
         }else System.out.println("--Zimmer frei--");
     }//end methode print()
-    //Zum Ausgeben der Zimmerbelegung, lediglich die Ausgabe ob Zimmer belegt ist oder nicht
-    public void printBelegt(){
+    public void printBelegt(){//Gibt aus, ob ein Zimmer inklusive Zimmerart, belegt ist.
         System.out.println("Zimmer " + zimmernummer + ": ");
         if(preiskategorie == 1){
             System.out.println("---Einzelzimmer---");
@@ -66,7 +64,7 @@ public class Zimmer extends Main{
         }else System.out.println("--Zimmer frei--");
     }//end methode printBelegt()
     //
-    //Notwendige getter- und setter methoden
+    //Notwendige Getter- und Setter-methoden
     public void setZimmernummer(int zimmernummer){
         this.zimmernummer = zimmernummer;
     }

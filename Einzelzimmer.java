@@ -3,37 +3,36 @@ public class Einzelzimmer extends Zimmer{
     private boolean balkon;
     //
     //Konstruktoren
+    //Erstellung eines Objekts des Typs Einzelzimmer (inklusive Übergabe aller Attribute).
     public Einzelzimmer(int zimmernummer, int preiskategorie, double preisProZimmer, int zimmerProKategorie, boolean belegt, boolean balkon){
         super(zimmernummer, preiskategorie, preisProZimmer, zimmerProKategorie, belegt);
         this.balkon = balkon;
     }//end constructor Einzelzimmer()
-    //erzeugt ein Objekt des Typen Einzelzimmers und fügt das Attribut Balkon hinzu
+    //Erstellung eines Objekts des Typs Einzelzimmer (ohne übergebene Attribute).
     public Einzelzimmer(){
         super();
         this.balkon = false;
     }//end constructor Einzelzimmer()
-    //setzt den PreisproZimmer auf 50 & und die Kategorie auf 1
+    //Erstellung eines Objekts des Typs Einzelzimmer (inklusive Übergabe der zur Anlage eines Einzelzimmers notwendigen Attribute und für die Zimmerart festgelegten Werte).
     public Einzelzimmer(int zimmernummer, boolean balkon){
         super(zimmernummer, 1, 50.00);
         this.balkon = balkon;
     }//end constructor Einzelzimmer()
-    //macht das gleiche wie der vorangegangene nur für den Fall des Einzelzimmerzuschlags,
-    //indem er das Attribut einzelzimmerzuschlag hinzufügt, er passt ebenfalls die Preise an
+    //Aufgrund Vererbung: Zur erstellung eines Objekts des Typs Doppelzimmer (inklusive Übergabe der zur Anlage eines Doppelzimmers notwendigen Attribute und für die Zimmerart festgelegten Werte).
     public Einzelzimmer(int zimmernummer, boolean balkon, boolean einzelzimmerzuschlag){
         super(zimmernummer, 2, 75.00);
         this.balkon = balkon;
     }
     //
     //Methoden
-    //ruft die Zimmer print Methode auf, mit der besonderheit, dass hier auch noch der Balkon, falls er gebucht wird mit ausgegeben wird
-    public void print(){
+    public void print(){//Gibt alle Zimmerdaten inklusive Balkon aus.
         super.print();
         if(balkon){
             System.out.println("Zimmer mit Balkon");
         }else System.out.println("Zimmer ohne Balkon");
         System.out.println("");
     }//end methode print()
-    //notwendige getter-und setter methoden
+    //Notwendige Getter- und Setter-Methoden
     public void setBalkon(boolean balkon){
         this.balkon = balkon;
     }

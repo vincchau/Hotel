@@ -1,7 +1,7 @@
+//Import der notwendigen Java Libraries.
 import java.text.DecimalFormat;
 public class Buchung extends Main{
-    //Zur richtigen Wiedergabe der Summe
-    public DecimalFormat dF = new DecimalFormat("#.00");
+    public DecimalFormat dF = new DecimalFormat("#.00");//Erstellung eines Formats zur richtigen darstellung der Summen.
     //Attribute
     private int zimmernummer, preiskategorie, anzahlTage, anzahlPersonen;
     private boolean balkon, einzelzimmerzuschlag, fruehstueck;
@@ -11,7 +11,7 @@ public class Buchung extends Main{
 
     //
     //Konstruktoren
-    //Konstruktor zur Erzeugung eines Objekten des Types Buchung (buchung)
+    //Konstruktor zur Erzeugung eines Objekts des Typs Buchung (inklusive übergabe aller Attribute).
     public Buchung(int zimmernummer, int preiskategorie, int anzahlPersonen, int anzahlTage, boolean balkon, boolean einzelzimmerzuschlag, boolean fruehstueck, boolean haustier, boolean zimmerservice, String name, String anschrift, String geburtsdatum, boolean premiumkunde){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
@@ -28,14 +28,14 @@ public class Buchung extends Main{
         this.premiumkunde = premiumkunde;
         this.summe = summeBerechnen();
     }//end constructor Buchung()
-    //Konstruktor zur Erzeugung eines Objekten des Types Buchung ( Erzeugung)
+    //Konstruktor zur Erzeugung eines Objekts des Typs Buchung (inklusive übergabe einiger Attribute).
     public Buchung(int zimmernummer, int preiskategorie, int anzahlPersonen, int anzahlTage){
         this.zimmernummer = zimmernummer;
         this.preiskategorie = preiskategorie;
         this.anzahlPersonen = anzahlPersonen;
         this.anzahlTage = anzahlTage;
     }//end constructor Buchung()
-    //Konstruktor zur Erzeugung eines Objekten des Types Buchung ( zurücksetzten)
+    //Konstruktor zur Erzeugung eines Objekts des Typs Buchung (ohne übergebene Attribute).
     public Buchung(){
         this.zimmernummer = 0;
         this.preiskategorie = 0;
@@ -54,8 +54,7 @@ public class Buchung extends Main{
     }
     //
     //Methoden
-    //Berechnung der Summe anhand der Attribute
-    public double summeBerechnen(){
+    public double summeBerechnen(){//Berechnet die Summe anhand der Attribute.
         double z = 0.00;
         switch(preiskategorie) {
             case 1: z += anzahlTage * 50.00;break;
@@ -73,8 +72,7 @@ public class Buchung extends Main{
         z *= 1.19;
         return Math.round(z*100.00)/100.00;
     }//end Methode summeBerechnen()
-    //gibt die jeweilige print Methode wieder je nach Zimmer
-    public void print(){
+    public void print(){//Regelt die Ausgabe der jeweiligen Zimmerart.
         switch(preiskategorie){
             case 1: printEinzelzimmer(); break;
             case 2: printDoppelzimmer(); break;
@@ -84,15 +82,13 @@ public class Buchung extends Main{
         }
         System.out.println("");
     }//end Methode print()
-    //gibt die Buchung aus sowie auch das Zimmer als auch die Kundendaten durch Zugriff auf die anderen Methoden
-    public void printBuchung(){
+    public void printBuchung(){//Gibt die Buchung des Zimmers aus, inklusive Summe und Kundendaten.
         System.out.println("---Buchung---");
         print();
         System.out.println("Summe: " + dF.format(summe) + "€"); System.out.println("");
         printKundendaten();
     }//end Methode printBuchung()
-    //Gibt die vorher eingegebenen Kundendaten wieder
-    public void printKundendaten(){
+    public void printKundendaten(){//Gibt die Kundendaten aus.
         System.out.println("Kundendaten:");
         System.out.println("Name: " + name);
         System.out.println("Anschrift: " + anschrift);
@@ -102,13 +98,11 @@ public class Buchung extends Main{
         }
         System.out.println("----------");
     }//end Methode printKundendaten()
-    //Gibt die Anzahl der Personen als auch die Tage wieder, die die Person im Hotel bleibt
-    public void printTagePersonen(){
+    public void printTagePersonen(){//Gibt die Aufenthaltsdauer und die Personenzahl aus.
         System.out.println("Anzahl Personen: " + anzahlPersonen);
         System.out.println("Anzahl Tage: " + anzahlTage);
     }//end Methode printTagePersonen()
-     //gibt das Einzelzimmer aus sowie auch alle zugehörigen möglichen Attribute, welche man dazu buchen kann
-    public void printEinzelzimmer(){
+    public void printEinzelzimmer(){//Gibt das Einzelzimmer inklusive aller möglichen Attribute aus.
         System.out.println("Zimmer " + zimmernummer + ": Einzelzimmer");
         System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*50.00) + "€");
         printTagePersonen();
@@ -120,8 +114,7 @@ public class Buchung extends Main{
         }
         System.out.println("----------");
     }//end Methode printEinzelzimmer()
-    //gibt das Doppelzimmer aus sowie auch alle zugehörigen möglichen Attribute, welche man dazu buchen kann
-    public void printDoppelzimmer(){
+    public void printDoppelzimmer(){//Gibt das Doppelzimmer inklusive aller möglichen Attribute aus.
         System.out.println("Zimmer " + zimmernummer + ": Doppelzimmer");
         System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*75.00) + "€");
         printTagePersonen();
@@ -136,8 +129,7 @@ public class Buchung extends Main{
         }
         System.out.println("----------");
     }//end Methode printDoppelzimmer()
-    //gibt das Tripplezimmer aus sowie auch alle zugehörigen möglichen Attribute, welche man dazu buchen kann
-    public void printTripplezimmer(){
+    public void printTripplezimmer(){//Gibt das Tripplezimmer inklusive aller möglichen Attribute aus.
         System.out.println("Zimmer " + zimmernummer + ": Tripplezimmer");
         System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*100.00) + "€");
         printTagePersonen();
@@ -146,8 +138,7 @@ public class Buchung extends Main{
         }
         System.out.println("----------");
     }//end Methode printTripplezimmer()
-    //gibt die Wohnung aus sowie auch alle zugehörigen möglichen Attribute, welche man dazu buchen kann
-    public void printWohnung(){
+    public void printWohnung(){//Gibt die Wohnung inklusive aller möglichen Attribute aus.
         System.out.println("Zimmer " + zimmernummer + ": Ferienwohnung");
         System.out.println("Preiskategorie: " + preiskategorie + " --- " + dF.format(anzahlTage*150.00) + "€");
         printTagePersonen();
@@ -160,7 +151,7 @@ public class Buchung extends Main{
         System.out.println("----------");
     }//end Methode printWohnung()
     //
-    //notwendige getter- und setter Methoden
+    //Notwendige Getter- und Setter-Methoden.
     public void setName(String name){
         this.name = name;
     }

@@ -7,7 +7,7 @@ public class Kunde extends Main{
     private int zimmernummer1, zimmernummer2, zimmernummer3;
     //
     //Konstruktoren
-    //Erstellung eines Objekts des Typen Kunde (buchen)
+    //Erstellung eines Objekts des Typs Kunde (inklusive übergabe aller für die Buchung notwendigen Attribute).
     public Kunde(String name, String anschrift, String geburtsdatum, boolean premiumkunde, int zimmernummer1){
         this.name = name;
         this.anschrift = anschrift;
@@ -17,7 +17,7 @@ public class Kunde extends Main{
         this.zimmernummer2 = 0;
         this.zimmernummer3 = 0;
     }//end constructor Kunde
-    //Erstellung eines Objekts des Typen Kunde (ganz generelles erstellen eines Kunden)
+    //Erstellung eines Objekts des Typs Kunde (inklusive aller zu erstellung eines Kunden notwendigen Attribute).
     public Kunde(String name, String anschrift, String geburtsdatum, boolean premiumkunde){
         this.name = name;
         this.anschrift = anschrift;
@@ -27,7 +27,7 @@ public class Kunde extends Main{
         this.zimmernummer2 = 0;
         this.zimmernummer3 = 0;
     }//end constructor Kunde
-    //Erstellung eines Objekts des Typen Kunde-> quasi um den Kunden wieder blank zu machen
+    //Erstellung eines Objekts des Typs Kunde (ohne übergebene Attribute).
     public Kunde(){
         this.name = "";
         this.anschrift = " ";
@@ -39,8 +39,7 @@ public class Kunde extends Main{
     }//end constructor Kunde
     //
     //Methoden
-    //generelle print Methode aller Attribute der Klasse
-    public void print(){
+    public void print(){//Print-Methode zur Ausgabe der Kundendaten.
         System.out.println("Kundendaten:");
         System.out.println("Name: " + name);
         System.out.println("Anschrift: " + anschrift);
@@ -49,9 +48,9 @@ public class Kunde extends Main{
             System.out.println("Premiumkunde");
         }//end if
         System.out.println("----------");
-    }//end method print
+    }//end Methode print()
     //
-    //notwendige getter- und setter Methoden
+    //Notwendige Getter- und Setter-Methoden.
     public void setName(String name){
         this.name = name;
     }
