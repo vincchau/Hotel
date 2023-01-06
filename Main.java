@@ -16,7 +16,7 @@ public class Main {
         //
         belegungErzeugen();//Die vorgegebene Anfangsbelegung wird erzeugt.
         //
-        for(int i = 0; i<100; i++){//Start der For-Schleife in der die Menüauswahl läuft.
+        while(true){//Start der While-Schleife in der die Menüauswahl läuft.
             //
             //Start der Abfrage der Menüauswahl
             print("__________Menü__________");
@@ -36,7 +36,7 @@ public class Main {
                 case 10: rechnungKundeErstellen(); break;
                 default: break;
             }//end switch(auswahl)
-        }//end For-Schleife der Menüauswahl.
+        }//end While-Schleife der Menüauswahl.
     }//end main
     //
     //Methoden
