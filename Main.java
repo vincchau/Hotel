@@ -19,7 +19,7 @@ public class Main {
         while(true){//Start der While-Schleife in der die Menüauswahl läuft.
             //
             //Start der Abfrage der Menüauswahl
-            print("__________Menü__________");
+            print("##########Menü##########");
             print("1. Buchung ausführen, 2. Belegung eines Zimmers anzeigen, 3. Alle Zimmer anzeigen, 4. Zimmerbelegung in Prozent anzeigen, 5. Buchung eines Zimmers anzeigen \n" +
                     "6. Buchungen eines Kunden anzeigen, 7. Rechnung für ein Zimmer erstellen, 8. Kunde anlegen, 9. Kunden anzeigen, 10. Gesamtrechnung für einen Kunden erstellen.");
             int auswahl = s.nextInt();//Eingabe des zu öffnenden Menüs.
@@ -303,7 +303,7 @@ public class Main {
         return sd.nextLine();//...und gibt den Wert zurück.
     }//end Methode abfrageAnschrift()
     public static String abfrageGeburtsdatum(){//Bittet den Kunden sein Geburtsdatum einzugeben...
-        print("Bitte geben Sie ihr Geburtsdatum ein. TT.MM.JJJJ");
+        print("Bitte geben Sie ihr Geburtsdatum ein: TT.MM.JJJJ");
         return s.next();//...und gibt den Wert zurück.
     }//end Methode abfrageGeburtsdatum()
     public static boolean abfragePremiumkunde(){//Fragt den Kunden, ob er Premiumkunde werden möchte...
