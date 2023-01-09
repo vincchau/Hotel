@@ -299,11 +299,11 @@ public class Main {
         return sd.nextLine();//...und gibt den Wert zurück.
     }//end Methode abfrageName()
     public static String abfrageAnschrift(){//Bittet den Kunden seine Anschrift einzugeben...
-        print("Bitte geben Sie ihre Anschrift ein.");
+        print("Bitte geben Sie ihre Anschrift ein: Musterstr. 3, 72739 Musterstadt");
         return sd.nextLine();//...und gibt den Wert zurück.
     }//end Methode abfrageAnschrift()
     public static String abfrageGeburtsdatum(){//Bittet den Kunden sein Geburtsdatum einzugeben...
-        print("Bitte geben Sie ihr Geburtsdatum ein.");
+        print("Bitte geben Sie ihr Geburtsdatum ein. TT.MM.JJJJ");
         return s.next();//...und gibt den Wert zurück.
     }//end Methode abfrageGeburtsdatum()
     public static boolean abfragePremiumkunde(){//Fragt den Kunden, ob er Premiumkunde werden möchte...
