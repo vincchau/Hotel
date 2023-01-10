@@ -19,9 +19,12 @@ public class Main {
         while(true){//Start der While-Schleife in der die Menüauswahl läuft.
             //
             //Start der Abfrage der Menüauswahl
-            print("##########Menü##########");
-            print("1. Buchung ausführen, 2. Belegung eines Zimmers anzeigen, 3. Alle Zimmer anzeigen, 4. Zimmerbelegung in Prozent anzeigen, 5. Buchung eines Zimmers anzeigen \n" +
-                    "6. Buchungen eines Kunden anzeigen, 7. Rechnung für ein Zimmer erstellen, 8. Kunde anlegen, 9. Kunden anzeigen, 10. Gesamtrechnung für einen Kunden erstellen.");
+            print("                               -Menü-");
+            print("1. Buchung ausführen                     2. Belegung eines Zimmers anzeigen");
+            print("3. Alle Zimmer anzeigen                  4. Zimmerbelegung in Prozent anzeigen");
+            print("5. Buchung eines Zimmers anzeigen        6. Buchungen eines Kunden anzeigen");
+            print("7. Rechnung für ein Zimmer erstellen     8. Kunde anlegen");
+            print("9. Kunden anzeigen                       10. Gesamtrechnung für einen Kunden erstellen");
             String auswahl = s.next();//Eingabe des zu öffnenden Menüs.
             switch(auswahl){
                 case "1": buchungAusfuehren(); break;
@@ -185,7 +188,9 @@ public class Main {
         }//end while(b)
     }//end Methode buchungAusfuehren(b)
     public static int abfrageZimmerart(){//Fragt nach, welche Zimmerart gebucht werden soll...
-        print("Welche Zimmerart möchten Sie buchen? 1. Einzelzimmer, 2. Doppelzimmer, 3. Tripplezimmer oder 4. Ferienwohnung");
+        print("Welche Zimmerart möchten Sie buchen?");
+        print("1. Einzelzimmer     2. Doppelzimmer");
+        print("3. Tripplezimmer    4. Ferienwohnung");
         return s.nextInt();//...und gibt den eingegebenen Wert zurück.
     }//end Methode abfrageZimmerart()
     public static boolean abfrageBalkon(){//Fragt nach, ob ein Zimmer mit Balkon gewünscht ist...
@@ -335,7 +340,9 @@ public class Main {
                 anzahlBelegt++;
             }
         }
+        print("");
         System.out.println("Das Hotel ist zu " + ((anzahlBelegt/Belegung.length)*100) + "% belegt.");
+        print("");
     }//end Methode zimmerBelegungProzent()
     //Ende der vierten Auswahlmöglichkeit
     //
@@ -413,13 +420,17 @@ public class Main {
         String geburtsdatum = abfrageGeburtsdatum();//...und das Geburtsdatum.
         int kundennummer = abfrageKundennummer(name, geburtsdatum);//Dann wird versucht, passende, existierende Kundendaten zu finden.
         if(kundennummer != 0){//Falls ein Kunde bereits existiert...
+            print("");
             print("Dieser Kunde existiert bereits.");//...wird ein Hinweis ausgegeben.
+            print("");
         } else {
             String anschrift = abfrageAnschrift(); boolean premiumkunde = abfragePremiumkunde();//Sonst werden die restlichen Daten erfasst...
             Kunden[k] = new Kunde(name, anschrift, geburtsdatum, premiumkunde);//...und ein neues Objekt vom Typen Kunden erzeugt.
             kundennummer = k;
             k++;
+            print("");
             print("Neuer Kunde angelegt.");//Dann wird ein Hinweis ausgegeben.
+            print("");
         }
         return kundennummer;//Schließlich wird die kundennummer zurückgegeben.
     }//end Methode neuenKundenAnlegen()
@@ -468,6 +479,7 @@ public class Main {
             }
         }//end for Schleife
         if(kundennummer != 0){//Wenn eine passende Kundennummer abgelegt wurde, ...
+            print("");
             print("---Rechnung---");//...wird eine Rechnung...
             Kunden[kundennummer].print();//...inkl. Kundendaten ...
             if(Kunden[kundennummer].getZimmernummer1() != 0){
