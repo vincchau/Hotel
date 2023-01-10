@@ -22,18 +22,18 @@ public class Main {
             print("##########Menü##########");
             print("1. Buchung ausführen, 2. Belegung eines Zimmers anzeigen, 3. Alle Zimmer anzeigen, 4. Zimmerbelegung in Prozent anzeigen, 5. Buchung eines Zimmers anzeigen \n" +
                     "6. Buchungen eines Kunden anzeigen, 7. Rechnung für ein Zimmer erstellen, 8. Kunde anlegen, 9. Kunden anzeigen, 10. Gesamtrechnung für einen Kunden erstellen.");
-            int auswahl = s.nextInt();//Eingabe des zu öffnenden Menüs.
+            String auswahl = s.next();//Eingabe des zu öffnenden Menüs.
             switch(auswahl){
-                case 1: buchungAusfuehren(); break;
-                case 2: zimmerBelegungAnzeigen(); break;
-                case 3: zimmerAnzeigen(); break;
-                case 4: zimmerBelegungProzent(); break;
-                case 5: zimmerBuchungAnzeigen(); break;
-                case 6: buchungKundeAnzeigen(); break;
-                case 7: rechnungZimmerErstellen(); break;
-                case 8: neuenKundenAnlegen(); break;
-                case 9: kundenAnzeigen(); break;
-                case 10: rechnungKundeErstellen(); break;
+                case "1": buchungAusfuehren(); break;
+                case "2": zimmerBelegungAnzeigen(); break;
+                case "3": zimmerAnzeigen(); break;
+                case "4": zimmerBelegungProzent(); break;
+                case "5": zimmerBuchungAnzeigen(); break;
+                case "6": buchungKundeAnzeigen(); break;
+                case "7": rechnungZimmerErstellen(); break;
+                case "8": neuenKundenAnlegen(); break;
+                case "9": kundenAnzeigen(); break;
+                case "10": rechnungKundeErstellen(); break;
                 default: break;
             }//end switch(auswahl)
         }//end While-Schleife der Menüauswahl.
