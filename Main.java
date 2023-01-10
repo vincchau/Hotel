@@ -459,7 +459,7 @@ public class Main {
     //Ende der neunten Auswahlmöglichkeit
     //AUSWAHL: MÖGLICHKEIT 10
     public static void rechnungKundeErstellen(){//Erstellt eine Gesamtrechnung für alle Buchungen eines Kunden
-        int kundennummer = 0; double gesamtSumme = 0.0;
+        int kundennummer = 0; double gesamtSumme = 0.00;
         print("Geben Sie den Vor- und Nachnamen des Kunden ein fuer den Sie eine Gesamtrechnung erstellen wollen.");
         String name = sd.nextLine();//Bittet um Eingabe eines Namens.
         for(int r = k-1; r>0; r--){//Durchläuft alle bereits mit Objekten belegte Kundennummern.
@@ -506,12 +506,12 @@ public class Main {
     //Ende der zehnten Auswahlmöglichkeit
     //
     public static void printSumme(double summe, boolean premiumkunde){//Methode zur Ausgabe...
-        System.out.println("Netto: " + dF.format(Math.round((summe/1.19)*100)/100) + "€");//...des Nettobetrags, ...
+        System.out.println("Netto: " + dF.format(Math.round((summe/1.19)*100.00)/100.00) + "€");//...des Nettobetrags, ...
         if(premiumkunde){//...falls vorhanden...
             System.out.println("Netto ohne Premiumkundenrabatt: " + dF.format(Math.round((summe/1.19/0.95)*100.00)/100.00) + "€");//...des Premiumkunderabatts, ...
         }
         System.out.println("MwSt.: " + dF.format(Math.round((summe - summe / 1.19)*100.00)/100.00) + "€");//...der Mehrwertsteuer und...
-        System.out.println("Brutto: " + dF.format(Math.round(summe*100)/100) + "€");//...des Bruttobetrags.
+        System.out.println("Brutto: " + dF.format(Math.round(summe*100.00)/100.00) + "€");//...des Bruttobetrags.
         print("----------");
     }//end Methode printSumme()
     //
